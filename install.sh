@@ -178,19 +178,24 @@ download_repository() {
     if [[ "$HAS_CURL" == true ]]; then
         # Fallback to curl for individual files
         REPO_DIR="$TEMP_DIR/claude-quest"
-        mkdir -p "$REPO_DIR/skills/claude-quest"
+        mkdir -p "$REPO_DIR/skills/claude-quest/data"
         mkdir -p "$REPO_DIR/commands"
 
-        # Download skill files
-        local skill_files=(
-            "SKILL.md"
+        # Download SKILL.md
+        if ! curl -sSL "$RAW_BASE_URL/skills/claude-quest/SKILL.md" -o "$REPO_DIR/skills/claude-quest/SKILL.md" 2>/dev/null; then
+            print_error "Failed to download skills/claude-quest/SKILL.md"
+            exit 1
+        fi
+
+        # Download data files
+        local data_files=(
             "achievements.json"
-            "xp-values.json"
+            "progress.schema.json"
         )
 
-        for file in "${skill_files[@]}"; do
-            if ! curl -sSL "$RAW_BASE_URL/skills/claude-quest/$file" -o "$REPO_DIR/skills/claude-quest/$file" 2>/dev/null; then
-                print_error "Failed to download skills/claude-quest/$file"
+        for file in "${data_files[@]}"; do
+            if ! curl -sSL "$RAW_BASE_URL/skills/claude-quest/data/$file" -o "$REPO_DIR/skills/claude-quest/data/$file" 2>/dev/null; then
+                print_error "Failed to download skills/claude-quest/data/$file"
                 exit 1
             fi
         done
@@ -307,17 +312,10 @@ verify_installation() {
         success=false
     fi
 
-    if [[ -f "$SKILLS_DIR/claude-quest/achievements.json" ]]; then
-        print_success "achievements.json present"
+    if [[ -f "$SKILLS_DIR/claude-quest/data/achievements.json" ]]; then
+        print_success "data/achievements.json present"
     else
-        print_error "achievements.json missing"
-        success=false
-    fi
-
-    if [[ -f "$SKILLS_DIR/claude-quest/xp-values.json" ]]; then
-        print_success "xp-values.json present"
-    else
-        print_error "xp-values.json missing"
+        print_error "data/achievements.json missing"
         success=false
     fi
 
