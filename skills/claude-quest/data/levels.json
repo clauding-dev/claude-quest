@@ -1,0 +1,26 @@
+{
+  "levels": [
+    { "level": 1, "title": "Wanderer", "xp_required": 0 },
+    { "level": 2, "title": "Apprentice", "xp_required": 100 },
+    { "level": 3, "title": "Initiate", "xp_required": 250 },
+    { "level": 4, "title": "Adept", "xp_required": 500 },
+    { "level": 5, "title": "Journeyman", "xp_required": 800 },
+    { "level": 6, "title": "Artisan", "xp_required": 1200 },
+    { "level": 7, "title": "Expert", "xp_required": 1700 },
+    { "level": 8, "title": "Master", "xp_required": 2300 },
+    { "level": 9, "title": "Grandmaster", "xp_required": 3000 },
+    { "level": 10, "title": "Sage", "xp_required": 3800 },
+    { "level": 11, "title": "Virtuoso", "xp_required": 4700 },
+    { "level": 12, "title": "Luminary", "xp_required": 5700 },
+    { "level": 13, "title": "Legend", "xp_required": 6800 },
+    { "level": 14, "title": "Mythic", "xp_required": 8000 },
+    { "level": 15, "title": "Transcendent", "xp_required": 9500 }
+  ],
+  "rarity_xp": {
+    "common": 50,
+    "uncommon": 75,
+    "rare": 100,
+    "epic": 150,
+    "legendary": 200
+  }
+}

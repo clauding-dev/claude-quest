@@ -179,9 +179,10 @@ download_repository() {
         # Fallback to curl for individual files
         REPO_DIR="$TEMP_DIR/claude-quest"
         mkdir -p "$REPO_DIR/skills/claude-quest/data"
+        mkdir -p "$REPO_DIR/skills/claude-quest/runner"
         mkdir -p "$REPO_DIR/commands"
 
-        # Download SKILL.md
+        # Download main skill file
         if ! curl -sSL "$RAW_BASE_URL/skills/claude-quest/SKILL.md" -o "$REPO_DIR/skills/claude-quest/SKILL.md" 2>/dev/null; then
             print_error "Failed to download skills/claude-quest/SKILL.md"
             exit 1
@@ -190,6 +191,7 @@ download_repository() {
         # Download data files
         local data_files=(
             "achievements.json"
+            "levels.json"
             "progress.schema.json"
         )
 
@@ -199,6 +201,12 @@ download_repository() {
                 exit 1
             fi
         done
+
+        # Download runner files
+        if ! curl -sSL "$RAW_BASE_URL/skills/claude-quest/runner/main.md" -o "$REPO_DIR/skills/claude-quest/runner/main.md" 2>/dev/null; then
+            print_error "Failed to download skills/claude-quest/runner/main.md"
+            exit 1
+        fi
 
         # Download command file
         if ! curl -sSL "$RAW_BASE_URL/commands/quest.md" -o "$REPO_DIR/commands/quest.md" 2>/dev/null; then
@@ -316,6 +324,20 @@ verify_installation() {
         print_success "data/achievements.json present"
     else
         print_error "data/achievements.json missing"
+        success=false
+    fi
+
+    if [[ -f "$SKILLS_DIR/claude-quest/data/levels.json" ]]; then
+        print_success "data/levels.json present"
+    else
+        print_error "data/levels.json missing"
+        success=false
+    fi
+
+    if [[ -f "$SKILLS_DIR/claude-quest/runner/main.md" ]]; then
+        print_success "runner/main.md present"
+    else
+        print_error "runner/main.md missing"
         success=false
     fi
 
