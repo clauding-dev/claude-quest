@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude Quest Progress",
+  "description": "Tracks user's achievement progress in Claude Quest",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version for migrations"
+    },
+    "installedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When Claude Quest was installed"
+    },
+    "lastScan": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time achievements were scanned"
+    },
+    "totalXP": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total experience points earned"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 15,
+      "description": "Current level (1-15)"
+    },
+    "streak": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current streak in days"
+        },
+        "lastActiveDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Last date user was active (YYYY-MM-DD)"
+        },
+        "longest": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Longest streak ever achieved"
+        }
+      },
+      "required": ["current", "lastActiveDate", "longest"]
+    },
+    "achievements": {
+      "type": "object",
+      "description": "Map of achievement ID to unlock info",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "unlockedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this achievement was unlocked"
+          },
+          "notified": {
+            "type": "boolean",
+            "description": "Whether user has been notified of this unlock"
+          }
+        },
+        "required": ["unlockedAt", "notified"]
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "totalScans": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "achievementsUnlocked": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "required": ["version", "installedAt", "totalXP", "level", "streak", "achievements", "stats"]
+}
