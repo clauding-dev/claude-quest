@@ -1,5 +1,8 @@
-# Redirect root to /quest
-/ /quest 302
+# Redirect root to /quest/
+/ /quest/ 302
+
+# Redirect /quest to /quest/ (trailing slash)
+/quest /quest/ 301
 
 # SPA fallback - serve index.html for all /quest routes
-/quest/* /quest/index.html 200
+/quest/* /index.html 200
