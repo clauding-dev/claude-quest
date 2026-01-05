@@ -17,7 +17,7 @@ Parse the arguments to determine the subcommand:
 - **Progress file**: `~/.claude/claude-quest/progress.json`
 - **Achievements definition**: `~/.claude/skills/claude-quest/data/achievements.json`
 - **Tutorials**: `~/.claude/skills/claude-quest/data/tutorials/` directory
-- **Web Dashboard**: `https://seanzor.github.io/claude-quest`
+- **Web Dashboard**: `https://clauding.dev/quest`
 
 ## Categories
 
@@ -81,15 +81,15 @@ When arguments are empty, display the main dashboard.
 ━━━ Next Quests ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   [1] 🎯 [Achievement Name] (+XX XP)
       [Short description of what to do]
-      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
+      🔗 https://clauding.dev/quest/achievement/[id]
 
   [2] 🎯 [Achievement Name] (+XX XP)
       [Short description]
-      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
+      🔗 https://clauding.dev/quest/achievement/[id]
 
   [3] 🎯 [Achievement Name] (+XX XP)
       [Short description]
-      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
+      🔗 https://clauding.dev/quest/achievement/[id]
 
   💡 Type "/quest learn 1" to see how, or "/quest web" for dashboard!
 
@@ -226,7 +226,7 @@ When arguments match `learn <number>`:
 
 🌐 WEB LINK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  https://seanzor.github.io/claude-quest/achievement/[id]
+  https://clauding.dev/quest/achievement/[id]
 
 ══════════════════════════════════════════════════
   Ready? Complete the steps and run /quest scan!
@@ -274,12 +274,12 @@ When arguments match `category <name>`:
   ⬜ [#N] [Achievement Name]                  +XX XP
      [Description]
      Hint: [How to unlock]
-     🔗 https://seanzor.github.io/claude-quest/achievement/[id]
+     🔗 https://clauding.dev/quest/achievement/[id]
 
   ⬜ [#N] [Achievement Name]                  +XX XP
      [Description]
      Hint: [How to unlock]
-     🔗 https://seanzor.github.io/claude-quest/achievement/[id]
+     🔗 https://clauding.dev/quest/achievement/[id]
 
 ══════════════════════════════════════════════════
   💡 Run /quest learn <n> for detailed guides
@@ -374,7 +374,7 @@ When arguments are `web`:
 
 3. **Generate the URL**:
    ```
-   https://seanzor.github.io/claude-quest?p=[encoded_progress]
+   https://clauding.dev/quest?p=[encoded_progress]
    ```
 
 4. **Open the URL** in the user's default browser using:
@@ -386,7 +386,7 @@ When arguments are `web`:
    ```
    🌐 Opening Claude Quest Dashboard in browser...
 
-   URL: https://seanzor.github.io/claude-quest?p=...
+   URL: https://clauding.dev/quest?p=...
 
    Your progress has been loaded into the web dashboard.
    ```

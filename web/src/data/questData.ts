@@ -544,6 +544,6 @@ export const getCategoryTotalXP = (category: Category): number => {
   return achievements.filter(a => a.category === category).reduce((sum, a) => sum + a.xp, 0);
 };
 
-export const GITHUB_URL = 'https://github.com/SeanZoR/claude-quest';
-export const WEB_URL = 'https://seanzor.github.io/claude-quest';
-export const INSTALL_COMMAND = 'curl -sSL https://raw.githubusercontent.com/SeanZoR/claude-quest/main/install.sh | bash';
+export const GITHUB_URL = 'https://github.com/clauding-dev/claude-quest';
+export const WEB_URL = 'https://clauding.dev/quest';
+export const INSTALL_COMMAND = 'curl -sSL https://raw.githubusercontent.com/clauding-dev/claude-quest/main/install.sh | bash';

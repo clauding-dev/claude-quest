@@ -1,0 +1,5 @@
+# Redirect root to /quest
+/ /quest 302
+
+# SPA fallback - serve index.html for all /quest routes
+/quest/* /quest/index.html 200

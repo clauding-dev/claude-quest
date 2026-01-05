@@ -5,7 +5,7 @@ import AllAchievements from './pages/AllAchievements';
 
 function App() {
   return (
-    <BrowserRouter basename="/claude-quest">
+    <BrowserRouter basename="/quest">
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/achievements" element={<AllAchievements />} />

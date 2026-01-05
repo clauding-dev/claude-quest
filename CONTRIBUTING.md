@@ -23,7 +23,7 @@ Help us reach adventurers around the world by translating content into other lan
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/claude-quest.git
+   git clone https://github.com/clauding-dev/claude-quest.git
    cd claude-quest
    ```
 
