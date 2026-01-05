@@ -7,16 +7,17 @@ You are executing the Claude Quest command. Follow these instructions precisely.
 Parse the arguments to determine the subcommand:
 - Empty or whitespace only → Show main dashboard
 - `scan` → Force rescan all achievements
-- `learn <n>` → Show tutorial for nth suggested quest (n is a number)
+- `learn <n>` → Show tutorial for nth achievement (1-indexed)
 - `category <name>` → Show achievements in named category
 - `all` → List all 90 achievements
+- `web` → Open web dashboard with current progress
 
 ## File Locations
 
 - **Progress file**: `~/.claude/claude-quest/progress.json`
 - **Achievements definition**: `~/.claude/skills/claude-quest/data/achievements.json`
-- **Levels**: `~/.claude/skills/claude-quest/data/levels.json`
 - **Tutorials**: `~/.claude/skills/claude-quest/data/tutorials/` directory
+- **Web Dashboard**: `https://seanzor.github.io/claude-quest`
 
 ## Categories
 
@@ -58,13 +59,13 @@ When arguments are empty, display the main dashboard.
 ╔══════════════════════════════════════════════════╗
 ║              ⚔️  CLAUDE QUEST  ⚔️                 ║
 ╠══════════════════════════════════════════════════╣
-║  Level X: [Title]           ████████░░ XX%      ║
-║  XP: X,XXX / X,XXX                              ║
+║  Total XP: X,XXX                                 ║
+║  Achievements: XX/90                             ║
 ╚══════════════════════════════════════════════════╝
 
 ━━━ Recent Discoveries ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌱 [Achievement Name]       [RARITY]      +XX XP
-  🌱 [Achievement Name]       [RARITY]      +XX XP
+  🌱 [Achievement Name]                      +XX XP
+  🌱 [Achievement Name]                      +XX XP
   (Show last 3-5 unlocks, or "No recent discoveries" if none)
 
 ━━━ Quest Progress ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -80,14 +81,17 @@ When arguments are empty, display the main dashboard.
 ━━━ Next Quests ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   [1] 🎯 [Achievement Name] (+XX XP)
       [Short description of what to do]
+      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
 
   [2] 🎯 [Achievement Name] (+XX XP)
       [Short description]
+      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
 
   [3] 🎯 [Achievement Name] (+XX XP)
       [Short description]
+      🔗 https://seanzor.github.io/claude-quest/achievement/[id]
 
-  💡 Type "/quest learn 1" to see how!
+  💡 Type "/quest learn 1" to see how, or "/quest web" for dashboard!
 
 ══════════════════════════════════════════════════
   X/90 Achievements | 🔥 X-day streak
@@ -96,13 +100,9 @@ When arguments are empty, display the main dashboard.
 
 ### Progress Bar Rendering
 
-For the level progress bar (10 characters):
-- Calculate percentage toward next level
-- Use `█` for filled portions, `░` for empty
-- Example: 60% = `██████░░░░`
-
 For category progress bars (10 characters):
 - Calculate: (unlocked / total) * 10
+- Use `█` for filled portions, `░` for empty
 - Round to nearest whole number
 
 ---
@@ -155,12 +155,12 @@ When arguments are `scan`:
 4. **Report new discoveries**:
 ```
 🔍 Scanning Memory achievements...
-   ✅ First Words - CLAUDE.md exists
-   ✅ Scribe - 500+ words in CLAUDE.md
+   ✅ First Words (+50 XP) - CLAUDE.md exists
+   ✅ Scribe (+75 XP) - 500+ words in CLAUDE.md
    ⬜ Librarian - No project CLAUDE.md found
 
 🔍 Scanning Commands achievements...
-   ✅ Commander - First command created
+   ✅ Commander (+50 XP) - First command created
    ⬜ Arsenal - Need 5 commands (have 2)
    ...
 
@@ -168,6 +168,8 @@ When arguments are `scan`:
   New achievements: X
   Total unlocked: XX/90
   XP gained: +XXX
+
+  🌐 View full dashboard: /quest web
 ```
 
 5. **Update progress.json** with new unlocks and timestamps
@@ -180,9 +182,9 @@ When arguments are `scan`:
 
 When arguments match `learn <number>`:
 
-1. **Parse the number** (1, 2, or 3 typically)
+1. **Parse the number** (1-indexed achievement number)
 
-2. **Look up the nth next quest** from the suggestions
+2. **Look up the nth achievement** from the achievements list (1 = first achievement)
 
 3. **Load tutorial content** from `~/.claude/skills/claude-quest/data/tutorials/`
    - Tutorial files are named by category: `{category}.md`
@@ -194,8 +196,7 @@ When arguments match `learn <number>`:
 ╔══════════════════════════════════════════════════╗
 ║  ⚔️ QUEST GUIDE: [Achievement Name]              ║
 ╠══════════════════════════════════════════════════╣
-║  Category: [Category]        Rarity: [RARITY]    ║
-║  Reward: +XX XP                                  ║
+║  Category: [Category]           Reward: +XX XP   ║
 ╚══════════════════════════════════════════════════╝
 
 📜 DESCRIPTION
@@ -223,15 +224,19 @@ When arguments match `learn <number>`:
   → [Related Achievement 1] (+XX XP)
   → [Related Achievement 2] (+XX XP)
 
+🌐 WEB LINK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  https://seanzor.github.io/claude-quest/achievement/[id]
+
 ══════════════════════════════════════════════════
   Ready? Complete the steps and run /quest scan!
 ══════════════════════════════════════════════════
 ```
 
-5. If the number is invalid (e.g., `/quest learn 5` when only 3 suggestions), show:
+5. If the number is invalid (out of range 1-90), show:
 ```
-⚠️ Invalid quest number. Use 1-3 based on the Next Quests list.
-   Run /quest to see available quests.
+⚠️ Invalid achievement number. Use 1-90.
+   Run /quest all to see all achievements.
 ```
 
 ---
@@ -256,26 +261,29 @@ When arguments match `category <name>`:
 
 ✅ UNLOCKED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ [Achievement Name]                    [RARITY]
+  ✅ [#N] [Achievement Name]                  +XX XP
      [Description]
      Unlocked: [Date]
 
-  ✅ [Achievement Name]                    [RARITY]
+  ✅ [#N] [Achievement Name]                  +XX XP
      [Description]
      Unlocked: [Date]
 
 ⬜ LOCKED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⬜ [Achievement Name]                    [RARITY]
+  ⬜ [#N] [Achievement Name]                  +XX XP
      [Description]
      Hint: [How to unlock]
+     🔗 https://seanzor.github.io/claude-quest/achievement/[id]
 
-  ⬜ [Achievement Name]                    [RARITY]
+  ⬜ [#N] [Achievement Name]                  +XX XP
      [Description]
      Hint: [How to unlock]
+     🔗 https://seanzor.github.io/claude-quest/achievement/[id]
 
 ══════════════════════════════════════════════════
-  💡 Run /quest learn to get detailed guides
+  💡 Run /quest learn <n> for detailed guides
+  🌐 Or browse on web: /quest web
 ══════════════════════════════════════════════════
 ```
 
@@ -310,45 +318,78 @@ Display a compact list of all 90 achievements:
 ╚══════════════════════════════════════════════════╝
 
 ━━━ MEMORY (X/12) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ First Memory             COMMON       50 XP
-  ✅ Personal Scribe          COMMON       75 XP
-  ⬜ Project Memory           COMMON       75 XP
+  ✅ #1  First Memory                       50 XP
+  ✅ #2  Personal Scribe                    75 XP
+  ⬜ #3  Project Memory                     75 XP
   ...
 
 ━━━ COMMANDS (X/12) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ First Command            COMMON       50 XP
-  ⬜ Namespace User           COMMON       75 XP
+  ✅ #13 First Command                      50 XP
+  ⬜ #14 Namespace User                     75 XP
   ...
 
 ━━━ SKILLS (X/10) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⬜ Skill Unlocked           UNCOMMON    100 XP
+  ⬜ #25 Skill Unlocked                    100 XP
   ...
 
 ━━━ AGENTS (X/10) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⬜ Agent Creator            UNCOMMON    100 XP
+  ⬜ #35 Agent Creator                     100 XP
   ...
 
 ━━━ HOOKS (X/10) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⬜ Hooked                   UNCOMMON    100 XP
+  ⬜ #45 Hooked                            100 XP
   ...
 
 ━━━ INTEGRATIONS (X/14) ━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ Plugin Pioneer           COMMON       50 XP
+  ✅ #55 Plugin Pioneer                     50 XP
   ...
 
 ━━━ WORKFLOW (X/12) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ Git Ready                COMMON       25 XP
+  ✅ #69 Git Ready                          25 XP
   ...
 
 ━━━ MILESTONES (X/10) ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ Day One                  COMMON       25 XP
-  ⬜ Getting Started          COMMON       50 XP
+  ✅ #81 Day One                            25 XP
+  ⬜ #82 Getting Started                    50 XP
   ...
 
 ══════════════════════════════════════════════════
-  Use /quest category <name> for details
+  💡 /quest learn <n> for guides (e.g., /quest learn 1)
+  🌐 /quest web for full web dashboard
 ══════════════════════════════════════════════════
 ```
+
+---
+
+## Subcommand: Web (`/quest web`)
+
+When arguments are `web`:
+
+1. **Read current progress** from progress.json
+
+2. **Generate encoded progress parameter**:
+   - Create JSON: `{"xp": totalXP, "a": [array of unlocked achievement IDs], "s": streak}`
+   - Base64 encode the JSON string
+   - Append as `?p=` parameter
+
+3. **Generate the URL**:
+   ```
+   https://seanzor.github.io/claude-quest?p=[encoded_progress]
+   ```
+
+4. **Open the URL** in the user's default browser using:
+   - macOS: `open "URL"`
+   - Linux: `xdg-open "URL"`
+   - Windows: `start "URL"`
+
+5. **Display confirmation**:
+   ```
+   🌐 Opening Claude Quest Dashboard in browser...
+
+   URL: https://seanzor.github.io/claude-quest?p=...
+
+   Your progress has been loaded into the web dashboard.
+   ```
 
 ---
 
@@ -363,7 +404,6 @@ Create `~/.claude/claude-quest/progress.json`:
   "installedAt": "[current ISO datetime]",
   "lastScan": "[current ISO datetime]",
   "totalXP": 0,
-  "level": 1,
   "streak": {
     "current": 0,
     "lastActiveDate": "[today YYYY-MM-DD]",
@@ -382,10 +422,9 @@ Create `~/.claude/claude-quest/progress.json`:
 When new achievements are detected:
 1. Add to `achievements` object with `unlockedAt` timestamp
 2. Calculate XP and update `totalXP`
-3. Recalculate `level` based on XP thresholds from levels.json
-4. Update `lastScan` timestamp
-5. Update streak if new day
-6. Increment stats counters
+3. Update `lastScan` timestamp
+4. Update streak if new day
+5. Increment stats counters
 
 ### Streak Logic
 

@@ -13,3 +13,9 @@ progress.json
 .idea/
 .vscode/
 *.sublime-*
+
+# Playwright testing artifacts
+.playwright-mcp/
+
+# Node modules
+node_modules/

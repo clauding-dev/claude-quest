@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Custom CSS variables for the quest theme */
+:root {
+  --quest-gold: #f59e0b;
+  --quest-purple: #8b5cf6;
+  --quest-blue: #3b82f6;
+  --quest-green: #10b981;
+  --quest-red: #ef4444;
+  --quest-dark: #0f0f23;
+  --quest-darker: #0a0a1a;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--quest-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--quest-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--quest-gold);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--quest-gold) 0%, var(--quest-purple) 50%, var(--quest-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* Achievement card hover effect */
+.achievement-card {
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, rgba(30, 30, 50, 0.8), rgba(20, 20, 40, 0.9));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.achievement-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+}
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #0f0f23, #1a1a3e, #2d1f4f, #1a1a3e, #0f0f23);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Terminal typing animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Floating animation for hero elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse animation for badges */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.8); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Category icon containers */
+.category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 24px;
+}
+
+/* Rarity colors */
+.rarity-common { color: #9ca3af; }
+.rarity-uncommon { color: #10b981; }
+.rarity-rare { color: #3b82f6; }
+.rarity-epic { color: #8b5cf6; }
+.rarity-legendary { color: #f59e0b; }
+
+.rarity-common-bg { background: linear-gradient(135deg, rgba(156, 163, 175, 0.2), rgba(156, 163, 175, 0.1)); }
+.rarity-uncommon-bg { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1)); }
+.rarity-rare-bg { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)); }
+.rarity-epic-bg { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1)); }
+.rarity-legendary-bg { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)); }
