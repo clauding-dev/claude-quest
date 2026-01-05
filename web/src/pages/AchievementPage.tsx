@@ -3,7 +3,6 @@ import { ArrowLeft, Copy, ExternalLink, Sword, Check, Lock } from 'lucide-react'
 import { useState } from 'react';
 import { useProgress } from '../context/ProgressContext';
 import {
-  achievements,
   categories,
   getAchievementById,
   getAchievementIndex,

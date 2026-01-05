@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Search, Grid, List, ExternalLink, Sword, Check, Lock } from 'lucide-react';
+import { Search, Grid, List, ExternalLink, Sword, Check } from 'lucide-react';
 import { useProgress } from '../context/ProgressContext';
 import {
   achievements,

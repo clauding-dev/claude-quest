@@ -12,12 +12,6 @@ interface ProgressContextType {
   setProgressFromParam: (encoded: string) => void;
 }
 
-const defaultProgress: UserProgress = {
-  totalXP: 0,
-  unlockedAchievements: [],
-  streak: 0
-};
-
 const ProgressContext = createContext<ProgressContextType>({
   progress: null,
   isLoaded: false,
