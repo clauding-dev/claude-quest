@@ -1,0 +1,504 @@
+{
+  "agent": "Agent 5: AI & Security Expert",
+  "categories_added": ["security", "ai-mastery"],
+  "total_new_achievements": 40,
+  "achievements": [
+    {
+      "id": "secrets_in_env",
+      "name": "Secrets Keeper",
+      "description": "Store API keys in .env file instead of code",
+      "category": "security",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./.env", "./.env.local", "./.env.production"]
+      }
+    },
+    {
+      "id": "gitignore_secrets",
+      "name": "Hidden Treasures",
+      "description": "Add .env to .gitignore to prevent secret exposure",
+      "category": "security",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "path": "./.gitignore",
+        "pattern": "\\.env"
+      }
+    },
+    {
+      "id": "sandbox_user",
+      "name": "Sandbox Guardian",
+      "description": "Run Claude Code in sandbox mode for untrusted projects",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User runs Claude with --sandbox flag or configures sandbox mode"
+      }
+    },
+    {
+      "id": "tool_whitelist",
+      "name": "Gatekeeper",
+      "description": "Restrict Claude to specific allowed tools only",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "key": "allowedTools"
+      }
+    },
+    {
+      "id": "deny_dangerous",
+      "name": "Danger Zone Defender",
+      "description": "Configure deniedTools to block dangerous operations",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "key": "deniedTools"
+      }
+    },
+    {
+      "id": "permission_minimal",
+      "name": "Least Privilege",
+      "description": "Configure minimal default permissions",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "\"permissions\":\\s*\\{[^}]*\"default\":\\s*\"deny\""
+      }
+    },
+    {
+      "id": "audit_logger",
+      "name": "Audit Trail",
+      "description": "Enable session logging for security audit",
+      "category": "security",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json"],
+        "key": "sessionLog"
+      }
+    },
+    {
+      "id": "no_auto_approve",
+      "name": "Manual Override",
+      "description": "Disable auto-approve to review all tool calls",
+      "category": "security",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "\"autoApprove\":\\s*false"
+      }
+    },
+    {
+      "id": "credential_scanner",
+      "name": "Secret Scanner",
+      "description": "Ask Claude to scan for exposed credentials in code",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to scan for secrets, credentials, or API keys in code"
+      }
+    },
+    {
+      "id": "injection_aware",
+      "name": "Injection Defender",
+      "description": "Ask Claude to review code for injection vulnerabilities",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to check for SQL injection, XSS, command injection, or similar vulnerabilities"
+      }
+    },
+    {
+      "id": "security_review",
+      "name": "Security Auditor",
+      "description": "Request a comprehensive security review",
+      "category": "security",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks for full security audit or comprehensive security review"
+      }
+    },
+    {
+      "id": "owasp_aware",
+      "name": "OWASP Guardian",
+      "description": "Reference OWASP in security discussions",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User mentions OWASP, OWASP Top 10, or specific OWASP vulnerabilities"
+      }
+    },
+    {
+      "id": "rate_limiter",
+      "name": "Rate Limiter",
+      "description": "Ask Claude to implement rate limiting",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User requests rate limiting implementation or review"
+      }
+    },
+    {
+      "id": "dependency_checker",
+      "name": "Dependency Guardian",
+      "description": "Ask Claude to check for vulnerable dependencies",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to check npm audit, pip-audit, or dependency vulnerabilities"
+      }
+    },
+    {
+      "id": "pre_commit_security",
+      "name": "Commit Guard",
+      "description": "Set up pre-commit hook for security checks",
+      "category": "security",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "path": "./.git/hooks/pre-commit",
+        "pattern": "(secret|credential|security|gitleaks|trufflehog)"
+      }
+    },
+    {
+      "id": "token_rotation",
+      "name": "Token Rotator",
+      "description": "Discuss or implement API token rotation",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User discusses token rotation, key rotation, or credential refresh strategies"
+      }
+    },
+    {
+      "id": "cors_configured",
+      "name": "CORS Conscious",
+      "description": "Properly configure CORS settings",
+      "category": "security",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User configures or discusses CORS settings with Claude's help"
+      }
+    },
+    {
+      "id": "input_validator",
+      "name": "Input Validator",
+      "description": "Implement input validation with Claude's help",
+      "category": "security",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to implement or review input validation"
+      }
+    },
+    {
+      "id": "auth_implementer",
+      "name": "Auth Architect",
+      "description": "Implement authentication with Claude's guidance",
+      "category": "security",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User implements JWT, OAuth, session auth, or other authentication with Claude"
+      }
+    },
+    {
+      "id": "security_headers",
+      "name": "Header Hardener",
+      "description": "Configure security headers (CSP, HSTS, etc.)",
+      "category": "security",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User configures Content-Security-Policy, HSTS, X-Frame-Options, or other security headers"
+      }
+    },
+    {
+      "id": "model_selector",
+      "name": "Model Selector",
+      "description": "Explicitly choose between Haiku, Sonnet, and Opus",
+      "category": "ai-mastery",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/settings.json", "./.claude/settings.json", "~/.claude/commands/**/*.md", "./.claude/commands/**/*.md"],
+        "pattern": "(haiku|sonnet|opus)"
+      }
+    },
+    {
+      "id": "extended_thinking",
+      "name": "Deep Thinker",
+      "description": "Trigger Claude's extended thinking for complex problems",
+      "category": "ai-mastery",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User explicitly requests extended thinking or Claude uses extended thinking for complex reasoning"
+      }
+    },
+    {
+      "id": "thinking_budget",
+      "name": "Thinking Budget Master",
+      "description": "Configure thinking budget for extended reasoning",
+      "category": "ai-mastery",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "key": "thinkingBudget"
+      }
+    },
+    {
+      "id": "few_shot_master",
+      "name": "Few-Shot Master",
+      "description": "Provide examples in prompts for better results",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md", "~/.claude/commands/**/*.md"],
+        "pattern": "(example|Example|EXAMPLE).*\\n.*```"
+      }
+    },
+    {
+      "id": "chain_of_thought",
+      "name": "Chain of Thought",
+      "description": "Ask Claude to explain its reasoning step by step",
+      "category": "ai-mastery",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to think step by step, explain reasoning, or show work"
+      }
+    },
+    {
+      "id": "context_engineer",
+      "name": "Context Engineer",
+      "description": "Strategically manage context for optimal results",
+      "category": "ai-mastery",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User explicitly manages context, uses /compact, or discusses context window optimization"
+      }
+    },
+    {
+      "id": "structured_output",
+      "name": "Structure Seeker",
+      "description": "Request structured output format (JSON, YAML, etc.)",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User requests specific output format like JSON, YAML, markdown tables, or structured data"
+      }
+    },
+    {
+      "id": "iterative_refinement",
+      "name": "Iterative Refiner",
+      "description": "Refine Claude's output through multiple iterations",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User requests refinements, adjustments, or iterations on Claude's previous output"
+      }
+    },
+    {
+      "id": "constraint_setter",
+      "name": "Constraint Setter",
+      "description": "Set explicit constraints for Claude's responses",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md"],
+        "pattern": "(must|MUST|always|ALWAYS|never|NEVER|don't|do not)"
+      }
+    },
+    {
+      "id": "role_definer",
+      "name": "Role Definer",
+      "description": "Assign Claude a specific role or persona",
+      "category": "ai-mastery",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md", "~/.claude/agents/*.md"],
+        "pattern": "(You are|Act as|Behave as|Your role is)"
+      }
+    },
+    {
+      "id": "verification_pattern",
+      "name": "Verification Master",
+      "description": "Ask Claude to verify its own outputs",
+      "category": "ai-mastery",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to verify, double-check, or validate its own work"
+      }
+    },
+    {
+      "id": "hallucination_aware",
+      "name": "Hallucination Hunter",
+      "description": "Ask Claude to distinguish facts from uncertainty",
+      "category": "ai-mastery",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to indicate uncertainty, distinguish facts, or avoid hallucination"
+      }
+    },
+    {
+      "id": "token_optimizer",
+      "name": "Token Optimizer",
+      "description": "Optimize prompts for token efficiency",
+      "category": "ai-mastery",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User discusses token usage, optimizes prompts for brevity, or uses /compact"
+      }
+    },
+    {
+      "id": "temperature_tuner",
+      "name": "Temperature Tuner",
+      "description": "Adjust response creativity with temperature setting",
+      "category": "ai-mastery",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "key": "temperature"
+      }
+    },
+    {
+      "id": "system_prompt_crafter",
+      "name": "System Prompt Crafter",
+      "description": "Create detailed system prompts in CLAUDE.md",
+      "category": "ai-mastery",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md"],
+        "min_length": 2000
+      }
+    },
+    {
+      "id": "error_recovery",
+      "name": "Error Recovery Pro",
+      "description": "Guide Claude through error recovery",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User helps Claude recover from errors, provides corrections, or guides debugging"
+      }
+    },
+    {
+      "id": "multi_agent_orchestrator",
+      "name": "Multi-Agent Orchestrator",
+      "description": "Use multiple specialized agents in workflow",
+      "category": "ai-mastery",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["~/.claude/agents", "./.claude/agents"],
+        "pattern": "*.md",
+        "min_count": 3
+      }
+    },
+    {
+      "id": "task_decomposer",
+      "name": "Task Decomposer",
+      "description": "Break complex tasks into smaller subtasks",
+      "category": "ai-mastery",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User explicitly decomposes tasks or asks Claude to break down complex problems"
+      }
+    },
+    {
+      "id": "prompt_template",
+      "name": "Prompt Template Master",
+      "description": "Create reusable prompt templates",
+      "category": "ai-mastery",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/commands/**/*.md", "./.claude/commands/**/*.md"],
+        "pattern": "(\\$ARGUMENTS|\\$1|\\$2|\\{\\{.*\\}\\})"
+      }
+    },
+    {
+      "id": "output_parser",
+      "name": "Output Parser",
+      "description": "Parse and process Claude's structured outputs",
+      "category": "ai-mastery",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User parses Claude's JSON/structured output programmatically or in scripts"
+      }
+    }
+  ]
+}

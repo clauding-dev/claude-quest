@@ -1,0 +1,263 @@
+{
+  "generated_by": "Achievement Architect - Final Push",
+  "generated_at": "2026-01-05T14:00:00Z",
+  "total_new_achievements": 20,
+  "new_categories": ["testing", "documentation"],
+  "breakdown": {
+    "testing": 10,
+    "documentation": 10
+  },
+  "achievements": [
+    {
+      "id": "first_test",
+      "name": "First Test",
+      "description": "Create your first test file",
+      "category": "testing",
+      "xp": 50,
+      "rarity": "common",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./**/*.test.js", "./**/*.test.ts", "./**/*.spec.js", "./**/*.spec.ts", "./**/test_*.py", "./**/*_test.py", "./**/*_test.go", "./**/tests/*.py"]
+      }
+    },
+    {
+      "id": "test_driven",
+      "name": "Test Driven",
+      "description": "Ask Claude to write tests before implementation",
+      "category": "testing",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User explicitly asks Claude to write tests first, or follows TDD methodology"
+      }
+    },
+    {
+      "id": "coverage_hunter",
+      "name": "Coverage Hunter",
+      "description": "Generate or check code coverage report",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./coverage/**/*", "./htmlcov/**/*", "./.nyc_output/**/*", "./coverage.xml", "./lcov.info"]
+      }
+    },
+    {
+      "id": "mock_master",
+      "name": "Mock Master",
+      "description": "Create test with mocks or stubs",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["./**/*.test.*", "./**/*.spec.*", "./**/test_*.py"],
+        "pattern": "(mock|Mock|jest\\.fn|patch|MagicMock|stub|sinon|vi\\.fn)"
+      }
+    },
+    {
+      "id": "snapshot_tester",
+      "name": "Snapshot Tester",
+      "description": "Use snapshot testing",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./**/__snapshots__/*", "./**/*.snap"]
+      }
+    },
+    {
+      "id": "fixture_factory",
+      "name": "Fixture Factory",
+      "description": "Create test fixtures or factories",
+      "category": "testing",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./**/fixtures/**/*", "./**/conftest.py", "./**/factories.py", "./**/*.factory.*"]
+      }
+    },
+    {
+      "id": "e2e_champion",
+      "name": "E2E Champion",
+      "description": "Set up end-to-end testing",
+      "category": "testing",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./cypress/**/*", "./playwright/**/*", "./e2e/**/*", "./**/cypress.config.*", "./playwright.config.*"]
+      }
+    },
+    {
+      "id": "test_debugger",
+      "name": "Test Debugger",
+      "description": "Ask Claude to help debug failing tests",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to diagnose, debug, or fix failing tests"
+      }
+    },
+    {
+      "id": "test_refactorer",
+      "name": "Test Refactorer",
+      "description": "Refactor tests for better organization",
+      "category": "testing",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to refactor, reorganize, or improve test structure"
+      }
+    },
+    {
+      "id": "test_suite_architect",
+      "name": "Test Suite Architect",
+      "description": "Create comprehensive test suite with 10+ test files",
+      "category": "testing",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["./**/tests", "./**/__tests__", "./test"],
+        "pattern": "*.{test,spec}.*",
+        "min_count": 10
+      }
+    },
+    {
+      "id": "readme_writer",
+      "name": "README Writer",
+      "description": "Create a project README.md",
+      "category": "documentation",
+      "xp": 50,
+      "rarity": "common",
+      "detection": {
+        "type": "file_exists",
+        "path": "./README.md"
+      }
+    },
+    {
+      "id": "readme_completist",
+      "name": "README Completist",
+      "description": "Create comprehensive README with 5+ sections",
+      "category": "documentation",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "path": "./README.md",
+        "pattern": "^##\\s+",
+        "min_matches": 5
+      }
+    },
+    {
+      "id": "api_documenter",
+      "name": "API Documenter",
+      "description": "Create API documentation",
+      "category": "documentation",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./docs/api/**/*", "./api-docs/**/*", "./openapi.yaml", "./openapi.json", "./swagger.yaml", "./swagger.json"]
+      }
+    },
+    {
+      "id": "jsdoc_master",
+      "name": "JSDoc Master",
+      "description": "Document code with JSDoc or TSDoc comments",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["./**/*.js", "./**/*.ts"],
+        "pattern": "/\\*\\*[\\s\\S]*?@(param|returns|description|example)",
+        "min_matches": 3
+      }
+    },
+    {
+      "id": "docstring_devotee",
+      "name": "Docstring Devotee",
+      "description": "Add Python docstrings to functions",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["./**/*.py"],
+        "pattern": "\"\"\"[\\s\\S]*?(Args:|Returns:|Parameters:|Example:)",
+        "min_matches": 3
+      }
+    },
+    {
+      "id": "changelog_keeper",
+      "name": "Changelog Keeper",
+      "description": "Maintain a CHANGELOG file",
+      "category": "documentation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./CHANGELOG.md", "./CHANGELOG", "./HISTORY.md", "./CHANGES.md"]
+      }
+    },
+    {
+      "id": "contributing_guide",
+      "name": "Contributing Guide",
+      "description": "Create contribution guidelines",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./CONTRIBUTING.md", "./.github/CONTRIBUTING.md"]
+      }
+    },
+    {
+      "id": "docs_site_builder",
+      "name": "Docs Site Builder",
+      "description": "Set up documentation site generator",
+      "category": "documentation",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./mkdocs.yml", "./docusaurus.config.js", "./docs/.vitepress/**/*", "./_config.yml", "./book.toml"]
+      }
+    },
+    {
+      "id": "example_crafter",
+      "name": "Example Crafter",
+      "description": "Create code examples directory",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["./examples", "./samples", "./demo"],
+        "pattern": "*",
+        "min_count": 1
+      }
+    },
+    {
+      "id": "architecture_documenter",
+      "name": "Architecture Documenter",
+      "description": "Document system architecture",
+      "category": "documentation",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_exists",
+        "paths": ["./docs/architecture.md", "./ARCHITECTURE.md", "./docs/design.md", "./docs/adr/**/*"]
+      }
+    }
+  ]
+}

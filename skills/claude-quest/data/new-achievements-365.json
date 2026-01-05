@@ -1,0 +1,600 @@
+{
+  "generated_by": "365 Push - One achievement per day!",
+  "total_new_achievements": 67,
+  "achievements": [
+    {
+      "id": "test_coverage_80",
+      "name": "Coverage Champion",
+      "description": "Achieve 80%+ test coverage",
+      "category": "testing",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": { "type": "manual", "trigger": "Coverage report shows 80%+ coverage" }
+    },
+    {
+      "id": "test_watcher",
+      "name": "Test Watcher",
+      "description": "Run tests in watch mode",
+      "category": "testing",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User runs tests with --watch flag" }
+    },
+    {
+      "id": "parallel_tests",
+      "name": "Parallel Tester",
+      "description": "Run tests in parallel",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User runs tests with parallel/concurrent flag" }
+    },
+    {
+      "id": "test_reporter",
+      "name": "Test Reporter",
+      "description": "Generate test report in HTML or JSON",
+      "category": "testing",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./test-report.html", "./test-results.json", "./junit.xml"] }
+    },
+    {
+      "id": "integration_tester",
+      "name": "Integration Tester",
+      "description": "Write integration tests",
+      "category": "testing",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./**/integration/**/*.test.*", "./**/integration/**/*.spec.*"] }
+    },
+    {
+      "id": "type_doc",
+      "name": "Type Documentarian",
+      "description": "Document TypeScript types with TSDoc",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_contains", "paths": ["./**/*.ts"], "pattern": "@remarks|@typeParam|@see" }
+    },
+    {
+      "id": "license_adder",
+      "name": "License Keeper",
+      "description": "Add LICENSE file to project",
+      "category": "documentation",
+      "xp": 50,
+      "rarity": "common",
+      "detection": { "type": "file_exists", "paths": ["./LICENSE", "./LICENSE.md", "./LICENSE.txt"] }
+    },
+    {
+      "id": "code_of_conduct",
+      "name": "Community Builder",
+      "description": "Add CODE_OF_CONDUCT.md",
+      "category": "documentation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "file_exists", "paths": ["./CODE_OF_CONDUCT.md", "./.github/CODE_OF_CONDUCT.md"] }
+    },
+    {
+      "id": "issue_templates",
+      "name": "Issue Templater",
+      "description": "Create GitHub issue templates",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./.github/ISSUE_TEMPLATE/**/*", "./.github/ISSUE_TEMPLATE.md"] }
+    },
+    {
+      "id": "pr_template",
+      "name": "PR Templater",
+      "description": "Create pull request template",
+      "category": "documentation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./.github/PULL_REQUEST_TEMPLATE.md", "./.github/pull_request_template.md"] }
+    },
+    {
+      "id": "security_policy",
+      "name": "Security Policy Author",
+      "description": "Create SECURITY.md file",
+      "category": "security",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./SECURITY.md", "./.github/SECURITY.md"] }
+    },
+    {
+      "id": "secret_finder",
+      "name": "Secret Finder",
+      "description": "Discover a hidden Claude Code feature",
+      "category": "secrets",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "easter_egg_hunter",
+      "name": "Easter Egg Hunter",
+      "description": "Find 3 hidden features",
+      "category": "secrets",
+      "xp": 250,
+      "rarity": "epic",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "midnight_coder",
+      "name": "Midnight Coder",
+      "description": "Use Claude Code after midnight",
+      "category": "secrets",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "early_bird",
+      "name": "Early Bird",
+      "description": "Use Claude Code before 6 AM",
+      "category": "secrets",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "weekend_warrior",
+      "name": "Weekend Warrior",
+      "description": "Code with Claude on a weekend",
+      "category": "secrets",
+      "xp": 50,
+      "rarity": "common",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "holiday_hacker",
+      "name": "Holiday Hacker",
+      "description": "Use Claude Code on a major holiday",
+      "category": "secrets",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "thousand_lines",
+      "name": "Thousand Lines",
+      "description": "Generate 1000+ lines of code in one session",
+      "category": "secrets",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "marathon_session",
+      "name": "Marathon Session",
+      "description": "Have a 4+ hour coding session",
+      "category": "secrets",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "polyglot",
+      "name": "Polyglot",
+      "description": "Use 5+ programming languages in one project",
+      "category": "secrets",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": { "type": "secret" }
+    },
+    {
+      "id": "pair_programmer",
+      "name": "Pair Programmer",
+      "description": "Share a Claude session with a teammate",
+      "category": "collaboration",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User shares session or works collaboratively" }
+    },
+    {
+      "id": "code_review_giver",
+      "name": "Code Review Giver",
+      "description": "Use Claude to review someone else's code",
+      "category": "collaboration",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User asks Claude to review external code/PR" }
+    },
+    {
+      "id": "mentorship",
+      "name": "Mentor Mode",
+      "description": "Ask Claude to explain code for learning",
+      "category": "collaboration",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User asks Claude to explain code concepts" }
+    },
+    {
+      "id": "onboarding_helper",
+      "name": "Onboarding Helper",
+      "description": "Use Claude to understand a new codebase",
+      "category": "collaboration",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User asks Claude to explain project architecture" }
+    },
+    {
+      "id": "standup_writer",
+      "name": "Standup Writer",
+      "description": "Generate standup notes with Claude",
+      "category": "collaboration",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User asks Claude to summarize work for standup" }
+    },
+    {
+      "id": "theme_customizer",
+      "name": "Theme Customizer",
+      "description": "Customize Claude Code colors or theme",
+      "category": "customization",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "file_contains", "files": ["~/.claude/settings.json"], "pattern": "theme|color" }
+    },
+    {
+      "id": "keyboard_master",
+      "name": "Keyboard Master",
+      "description": "Configure custom keyboard shortcuts",
+      "category": "customization",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_contains", "files": ["~/.claude/settings.json"], "pattern": "keybind|shortcut" }
+    },
+    {
+      "id": "alias_creator",
+      "name": "Alias Creator",
+      "description": "Create shell aliases for Claude commands",
+      "category": "customization",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User creates bash/zsh aliases for claude commands" }
+    },
+    {
+      "id": "prompt_personalizer",
+      "name": "Prompt Personalizer",
+      "description": "Customize Claude's response style",
+      "category": "customization",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_contains", "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md"], "pattern": "(respond|reply|write|speak).*style" }
+    },
+    {
+      "id": "notification_tuner",
+      "name": "Notification Tuner",
+      "description": "Configure notification preferences",
+      "category": "customization",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "file_contains", "files": ["~/.claude/settings.json"], "pattern": "notification" }
+    },
+    {
+      "id": "startup_customizer",
+      "name": "Startup Customizer",
+      "description": "Configure custom startup behavior",
+      "category": "customization",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_contains", "files": ["~/.claude/settings.json"], "pattern": "startup|onStart" }
+    },
+    {
+      "id": "terminal_tweaker",
+      "name": "Terminal Tweaker",
+      "description": "Customize terminal output settings",
+      "category": "customization",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "file_contains", "files": ["~/.claude/settings.json"], "pattern": "terminal|output" }
+    },
+    {
+      "id": "cache_master",
+      "name": "Cache Master",
+      "description": "Understand and leverage prompt caching",
+      "category": "performance",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User discusses or optimizes for prompt caching" }
+    },
+    {
+      "id": "lazy_loader",
+      "name": "Lazy Loader",
+      "description": "Use lazy loading for large contexts",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User strategically loads context on demand" }
+    },
+    {
+      "id": "batch_optimizer",
+      "name": "Batch Optimizer",
+      "description": "Batch multiple operations efficiently",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User batches operations for efficiency" }
+    },
+    {
+      "id": "response_streamer",
+      "name": "Response Streamer",
+      "description": "Leverage streaming for long outputs",
+      "category": "performance",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User uses streaming effectively" }
+    },
+    {
+      "id": "skill_publisher",
+      "name": "Skill Publisher",
+      "description": "Share a skill with the community",
+      "category": "skills",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": { "type": "manual", "trigger": "User publishes skill to GitHub or registry" }
+    },
+    {
+      "id": "skill_installer",
+      "name": "Skill Installer",
+      "description": "Install a community skill",
+      "category": "skills",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User installs third-party skill" }
+    },
+    {
+      "id": "skill_updater",
+      "name": "Skill Updater",
+      "description": "Update a skill to newer version",
+      "category": "skills",
+      "xp": 75,
+      "rarity": "common",
+      "detection": { "type": "manual", "trigger": "User updates installed skill" }
+    },
+    {
+      "id": "skill_forker",
+      "name": "Skill Forker",
+      "description": "Fork and modify an existing skill",
+      "category": "skills",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User forks and customizes a skill" }
+    },
+    {
+      "id": "multi_project",
+      "name": "Multi-Project Master",
+      "description": "Use Claude across 5+ different projects",
+      "category": "workflow",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User has sessions in 5+ different directories" }
+    },
+    {
+      "id": "mono_repo_master",
+      "name": "Mono Repo Master",
+      "description": "Work with monorepo structure",
+      "category": "workflow",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./packages/**/*", "./apps/**/*", "./lerna.json", "./pnpm-workspace.yaml"] }
+    },
+    {
+      "id": "workspace_wizard",
+      "name": "Workspace Wizard",
+      "description": "Use npm/yarn/pnpm workspaces",
+      "category": "workflow",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_contains", "path": "./package.json", "pattern": "workspaces" }
+    },
+    {
+      "id": "docker_developer",
+      "name": "Docker Developer",
+      "description": "Use Claude with Docker projects",
+      "category": "integrations",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./Dockerfile", "./docker-compose.yml", "./docker-compose.yaml"] }
+    },
+    {
+      "id": "kubernetes_konfigurator",
+      "name": "Kubernetes Konfigurator",
+      "description": "Work with Kubernetes configs",
+      "category": "integrations",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "file_exists", "paths": ["./k8s/**/*", "./**/deployment.yaml", "./**/service.yaml"] }
+    },
+    {
+      "id": "terraform_tamer",
+      "name": "Terraform Tamer",
+      "description": "Use Claude with Terraform/IaC",
+      "category": "integrations",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "file_exists", "paths": ["./**/*.tf", "./terraform/**/*"] }
+    },
+    {
+      "id": "aws_architect",
+      "name": "AWS Architect",
+      "description": "Work with AWS configurations",
+      "category": "integrations",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./serverless.yml", "./sam.yaml", "./.aws/**/*", "./cdk.json"] }
+    },
+    {
+      "id": "graphql_guru",
+      "name": "GraphQL Guru",
+      "description": "Work with GraphQL schemas",
+      "category": "integrations",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "file_exists", "paths": ["./**/*.graphql", "./**/*.gql", "./schema.graphql"] }
+    },
+    {
+      "id": "hundred_achievements",
+      "name": "Century Club",
+      "description": "Unlock 100 achievements",
+      "category": "milestones",
+      "xp": 250,
+      "rarity": "epic",
+      "detection": { "type": "milestone", "requirement": { "total_unlocked": 100 } }
+    },
+    {
+      "id": "two_hundred_achievements",
+      "name": "Double Century",
+      "description": "Unlock 200 achievements",
+      "category": "milestones",
+      "xp": 400,
+      "rarity": "epic",
+      "detection": { "type": "milestone", "requirement": { "total_unlocked": 200 } }
+    },
+    {
+      "id": "three_hundred_achievements",
+      "name": "Triple Crown",
+      "description": "Unlock 300 achievements",
+      "category": "milestones",
+      "xp": 500,
+      "rarity": "legendary",
+      "detection": { "type": "milestone", "requirement": { "total_unlocked": 300 } }
+    },
+    {
+      "id": "completionist",
+      "name": "Completionist",
+      "description": "Unlock all 365 achievements",
+      "category": "milestones",
+      "xp": 1000,
+      "rarity": "legendary",
+      "detection": { "type": "milestone", "requirement": { "total_unlocked": 365 } }
+    },
+    {
+      "id": "category_master_memory",
+      "name": "Memory Master",
+      "description": "Unlock all memory achievements",
+      "category": "milestones",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": { "type": "milestone", "requirement": { "category_complete": "memory" } }
+    },
+    {
+      "id": "category_master_commands",
+      "name": "Command Conqueror",
+      "description": "Unlock all command achievements",
+      "category": "milestones",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": { "type": "milestone", "requirement": { "category_complete": "commands" } }
+    },
+    {
+      "id": "category_master_security",
+      "name": "Security Sentinel",
+      "description": "Unlock all security achievements",
+      "category": "milestones",
+      "xp": 250,
+      "rarity": "epic",
+      "detection": { "type": "milestone", "requirement": { "category_complete": "security" } }
+    },
+    {
+      "id": "xp_collector_1k",
+      "name": "XP Collector",
+      "description": "Earn 1,000 total XP",
+      "category": "milestones",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "milestone", "requirement": { "total_xp": 1000 } }
+    },
+    {
+      "id": "xp_collector_5k",
+      "name": "XP Hoarder",
+      "description": "Earn 5,000 total XP",
+      "category": "milestones",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": { "type": "milestone", "requirement": { "total_xp": 5000 } }
+    },
+    {
+      "id": "xp_collector_10k",
+      "name": "XP Legend",
+      "description": "Earn 10,000 total XP",
+      "category": "milestones",
+      "xp": 350,
+      "rarity": "epic",
+      "detection": { "type": "milestone", "requirement": { "total_xp": 10000 } }
+    },
+    {
+      "id": "xp_collector_25k",
+      "name": "XP Titan",
+      "description": "Earn 25,000 total XP",
+      "category": "milestones",
+      "xp": 500,
+      "rarity": "legendary",
+      "detection": { "type": "milestone", "requirement": { "total_xp": 25000 } }
+    },
+    {
+      "id": "agent_delegator",
+      "name": "Agent Delegator",
+      "description": "Successfully delegate task to custom agent",
+      "category": "agents",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User uses Task tool to spawn custom agent" }
+    },
+    {
+      "id": "agent_reviewer",
+      "name": "Agent Reviewer",
+      "description": "Use agent for code review",
+      "category": "agents",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User spawns agent specifically for code review" }
+    },
+    {
+      "id": "hook_debugger",
+      "name": "Hook Debugger",
+      "description": "Debug a misbehaving hook",
+      "category": "hooks",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User troubleshoots hook issues" }
+    },
+    {
+      "id": "hook_optimizer",
+      "name": "Hook Optimizer",
+      "description": "Optimize hook for performance",
+      "category": "hooks",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": { "type": "manual", "trigger": "User improves hook efficiency" }
+    },
+    {
+      "id": "command_library",
+      "name": "Command Library",
+      "description": "Create 10+ custom commands",
+      "category": "commands",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": { "type": "directory_has_files", "paths": ["~/.claude/commands", "./.claude/commands"], "pattern": "*.md", "min_count": 10 }
+    },
+    {
+      "id": "command_importer",
+      "name": "Command Importer",
+      "description": "Import community commands",
+      "category": "commands",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User imports commands from external source" }
+    },
+    {
+      "id": "memory_archaeologist",
+      "name": "Memory Archaeologist",
+      "description": "Reference old conversations in CLAUDE.md",
+      "category": "memory",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": { "type": "manual", "trigger": "User documents learnings from past sessions" }
+    }
+  ]
+}

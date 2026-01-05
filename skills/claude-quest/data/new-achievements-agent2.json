@@ -1,0 +1,515 @@
+{
+  "generated_by": "Achievement Architect Agent 2 - Automation Engineer",
+  "generated_at": "2026-01-05T00:00:00Z",
+  "total_new_achievements": 40,
+  "breakdown": {
+    "agents": 10,
+    "hooks": 10,
+    "automation": 20
+  },
+  "achievements": [
+    {
+      "id": "multi_agent_fleet",
+      "name": "Multi-Agent Fleet",
+      "description": "Create 3+ different agents",
+      "category": "agents",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["~/.claude/agents", "./.claude/agents"],
+        "pattern": "*.md",
+        "min_count": 3
+      }
+    },
+    {
+      "id": "agent_army",
+      "name": "Agent Army",
+      "description": "Create 5+ different agents",
+      "category": "agents",
+      "xp": 250,
+      "rarity": "epic",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["~/.claude/agents", "./.claude/agents"],
+        "pattern": "*.md",
+        "min_count": 5
+      }
+    },
+    {
+      "id": "model_mixer",
+      "name": "Model Mixer",
+      "description": "Create agents using different Claude models",
+      "category": "agents",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "Claude detects multiple agents with different model specifications (e.g., opus, sonnet, haiku)"
+      }
+    },
+    {
+      "id": "budget_optimizer",
+      "name": "Budget Optimizer",
+      "description": "Create agent using Haiku for cost efficiency",
+      "category": "agents",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "haiku"
+      }
+    },
+    {
+      "id": "power_agent",
+      "name": "Power Agent",
+      "description": "Create agent using Opus for maximum capability",
+      "category": "agents",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "opus"
+      }
+    },
+    {
+      "id": "agent_orchestrator",
+      "name": "Agent Orchestrator",
+      "description": "Reference another agent in agent prompt",
+      "category": "agents",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "@agent|invoke.*agent|call.*agent|delegate"
+      }
+    },
+    {
+      "id": "security_agent",
+      "name": "Security Agent",
+      "description": "Create agent focused on security tasks",
+      "category": "agents",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "(security|vulnerabilit|audit|penetration|CVE|OWASP)"
+      }
+    },
+    {
+      "id": "test_agent",
+      "name": "Test Agent",
+      "description": "Create agent specialized for testing",
+      "category": "agents",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "(test|spec|assert|coverage|TDD|BDD|QA)"
+      }
+    },
+    {
+      "id": "docs_agent",
+      "name": "Docs Agent",
+      "description": "Create agent for documentation tasks",
+      "category": "agents",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "(documentation|README|docstring|JSDoc|API docs|wiki)"
+      }
+    },
+    {
+      "id": "sandboxed_agent",
+      "name": "Sandboxed Agent",
+      "description": "Create agent with restricted tool access for safety",
+      "category": "agents",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/agents/*.md", "./.claude/agents/*.md"],
+        "pattern": "allowed-tools:.*\\n.*-\\s*(Read|Glob|Grep)"
+      }
+    },
+    {
+      "id": "pre_commit_hook",
+      "name": "Pre-Commit Hook",
+      "description": "Set up hook triggered before commits",
+      "category": "hooks",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(pre-commit|git.*commit)"
+      }
+    },
+    {
+      "id": "logging_hook",
+      "name": "Logging Hook",
+      "description": "Create hook that logs tool usage",
+      "category": "hooks",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(log|logger|logging|audit)"
+      }
+    },
+    {
+      "id": "validation_hook",
+      "name": "Validation Hook",
+      "description": "Create hook that validates input or output",
+      "category": "hooks",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(validat|schema|lint|check|verify)"
+      }
+    },
+    {
+      "id": "transformation_hook",
+      "name": "Transformation Hook",
+      "description": "Hook that transforms tool input or output",
+      "category": "hooks",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(transform|modify|rewrite|convert)"
+      }
+    },
+    {
+      "id": "notification_system",
+      "name": "Notification System",
+      "description": "Hook that sends desktop or external notifications",
+      "category": "hooks",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(notify|notification|terminal-notifier|osascript|ntfy|pushover|slack|webhook)"
+      }
+    },
+    {
+      "id": "metrics_collector",
+      "name": "Metrics Collector",
+      "description": "Hook that tracks and stores metrics",
+      "category": "hooks",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(metric|stats|counter|duration|timing)"
+      }
+    },
+    {
+      "id": "bash_hook",
+      "name": "Bash Hook",
+      "description": "Create hook that watches Bash tool specifically",
+      "category": "hooks",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "\"matcher\".*[Bb]ash"
+      }
+    },
+    {
+      "id": "file_guardian",
+      "name": "File Guardian",
+      "description": "Hook that protects certain files from modification",
+      "category": "hooks",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(protect|guard|deny.*Write|block.*Edit|forbidden)"
+      }
+    },
+    {
+      "id": "hook_scripter",
+      "name": "Hook Scripter",
+      "description": "Create hook that runs an external script",
+      "category": "hooks",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "\"command\".*\\.(sh|py|js|ts|rb)|\\.sh\"|bash\\s+-c"
+      }
+    },
+    {
+      "id": "conditional_hook",
+      "name": "Conditional Hook",
+      "description": "Hook with conditional logic based on environment",
+      "category": "hooks",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "(if|else|when|condition|\\$\\{|env\\.|ENV)"
+      }
+    },
+    {
+      "id": "auto_committer",
+      "name": "Auto Committer",
+      "description": "Use Claude to automatically create git commits",
+      "category": "automation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to commit changes or uses /commit command"
+      }
+    },
+    {
+      "id": "pr_generator",
+      "name": "PR Generator",
+      "description": "Use Claude to create a pull request",
+      "category": "automation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to create PR or uses gh pr create"
+      }
+    },
+    {
+      "id": "branch_manager",
+      "name": "Branch Manager",
+      "description": "Use Claude to manage git branches",
+      "category": "automation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to create, switch, or delete branches"
+      }
+    },
+    {
+      "id": "headless_operator",
+      "name": "Headless Operator",
+      "description": "Run Claude Code in non-interactive mode",
+      "category": "automation",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User runs claude with -p/--print flag or pipes input"
+      }
+    },
+    {
+      "id": "pipeline_builder",
+      "name": "Pipeline Builder",
+      "description": "Chain Claude output to other commands",
+      "category": "automation",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User pipes Claude output to another process"
+      }
+    },
+    {
+      "id": "ci_integrator",
+      "name": "CI Integrator",
+      "description": "Use Claude in CI/CD pipeline",
+      "category": "automation",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["./.github/workflows/*.yml", "./.github/workflows/*.yaml", "./.gitlab-ci.yml", "./Jenkinsfile"],
+        "pattern": "claude"
+      }
+    },
+    {
+      "id": "github_action_user",
+      "name": "GitHub Action User",
+      "description": "Use Claude Code GitHub Action",
+      "category": "automation",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["./.github/workflows/*.yml", "./.github/workflows/*.yaml"],
+        "pattern": "anthropics/claude|claude-code|claude.*action"
+      }
+    },
+    {
+      "id": "changelog_generator",
+      "name": "Changelog Generator",
+      "description": "Use Claude to generate changelogs",
+      "category": "automation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to generate or update CHANGELOG"
+      }
+    },
+    {
+      "id": "release_automator",
+      "name": "Release Automator",
+      "description": "Use Claude to prepare releases",
+      "category": "automation",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to create release, bump version, or tag"
+      }
+    },
+    {
+      "id": "issue_handler",
+      "name": "Issue Handler",
+      "description": "Use Claude to manage GitHub issues",
+      "category": "automation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User uses gh issue commands through Claude"
+      }
+    },
+    {
+      "id": "code_reviewer",
+      "name": "Code Reviewer",
+      "description": "Use Claude to review pull requests",
+      "category": "automation",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to review PR or uses /review-pr command"
+      }
+    },
+    {
+      "id": "test_runner",
+      "name": "Test Runner",
+      "description": "Use Claude to run and interpret test results",
+      "category": "automation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to run tests (pytest, jest, etc.)"
+      }
+    },
+    {
+      "id": "test_fixer",
+      "name": "Test Fixer",
+      "description": "Let Claude fix failing tests automatically",
+      "category": "automation",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to fix failing tests"
+      }
+    },
+    {
+      "id": "lint_automator",
+      "name": "Lint Automator",
+      "description": "Use Claude to fix linting issues",
+      "category": "automation",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to fix ESLint, Prettier, or other linting errors"
+      }
+    },
+    {
+      "id": "dependency_updater",
+      "name": "Dependency Updater",
+      "description": "Use Claude to update project dependencies",
+      "category": "automation",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to update npm/pip/cargo dependencies"
+      }
+    },
+    {
+      "id": "migration_assistant",
+      "name": "Migration Assistant",
+      "description": "Use Claude for database or code migrations",
+      "category": "automation",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to create or run migrations"
+      }
+    },
+    {
+      "id": "scaffold_master",
+      "name": "Scaffold Master",
+      "description": "Use Claude to generate boilerplate code",
+      "category": "automation",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to scaffold/bootstrap/init new components"
+      }
+    },
+    {
+      "id": "batch_processor",
+      "name": "Batch Processor",
+      "description": "Use Claude to process multiple files at once",
+      "category": "automation",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to modify/process multiple files"
+      }
+    },
+    {
+      "id": "refactor_ranger",
+      "name": "Refactor Ranger",
+      "description": "Use Claude for large-scale refactoring",
+      "category": "automation",
+      "xp": 175,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User asks Claude to refactor code across multiple files"
+      }
+    },
+    {
+      "id": "codemod_creator",
+      "name": "Codemod Creator",
+      "description": "Create reusable code transformation scripts",
+      "category": "automation",
+      "xp": 200,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User creates codemod/ast-grep/jscodeshift scripts with Claude"
+      }
+    }
+  ]
+}

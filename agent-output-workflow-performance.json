@@ -1,0 +1,312 @@
+{
+  "agent": "workflow-optimizer",
+  "task": "Create 23 new achievements for workflow and performance categories",
+  "summary": {
+    "workflow_additions": 8,
+    "performance_additions": 15,
+    "total_new": 23
+  },
+  "new_achievements": [
+    {
+      "id": "plan_strategist",
+      "name": "Plan Strategist",
+      "description": "Create multiple plan files for different features",
+      "category": "workflow",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "directory_has_files",
+        "paths": ["./.claude/plans", "./plans"],
+        "pattern": "*.md",
+        "min_count": 3
+      }
+    },
+    {
+      "id": "permission_sculptor",
+      "name": "Permission Sculptor",
+      "description": "Configure granular tool-specific permissions",
+      "category": "workflow",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "\"(allow|deny)\":\\s*\\[.*mcp__"
+      }
+    },
+    {
+      "id": "local_override",
+      "name": "Local Override",
+      "description": "Use settings.local.json for personal preferences",
+      "category": "workflow",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "path": "./.claude/settings.local.json"
+      }
+    },
+    {
+      "id": "session_librarian",
+      "name": "Session Librarian",
+      "description": "Resume a previous named session",
+      "category": "workflow",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User resumes session with --resume or session name"
+      }
+    },
+    {
+      "id": "project_hopper",
+      "name": "Project Hopper",
+      "description": "Use /cd to switch between projects",
+      "category": "workflow",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /cd command to change directories"
+      }
+    },
+    {
+      "id": "history_navigator",
+      "name": "History Navigator",
+      "description": "Use /history to explore past sessions",
+      "category": "workflow",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /history command"
+      }
+    },
+    {
+      "id": "todo_tracker",
+      "name": "Todo Tracker",
+      "description": "Use /todo command for task management",
+      "category": "workflow",
+      "xp": 75,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /todo command"
+      }
+    },
+    {
+      "id": "compact_mode",
+      "name": "Compact Mode",
+      "description": "Use /compact to summarize context",
+      "category": "workflow",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /compact command to summarize conversation"
+      }
+    },
+    {
+      "id": "context_conscious",
+      "name": "Context Conscious",
+      "description": "Check context usage with /context",
+      "category": "performance",
+      "xp": 50,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /context command to check usage"
+      }
+    },
+    {
+      "id": "token_economist",
+      "name": "Token Economist",
+      "description": "Monitor costs with /cost command",
+      "category": "performance",
+      "xp": 50,
+      "rarity": "common",
+      "detection": {
+        "type": "manual",
+        "trigger": "User invokes /cost command to track spending"
+      }
+    },
+    {
+      "id": "context_optimizer",
+      "name": "Context Optimizer",
+      "description": "Use context percentage display in status line",
+      "category": "performance",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json"],
+        "pattern": "context_window|context.*pct|ctx"
+      }
+    },
+    {
+      "id": "model_strategist",
+      "name": "Model Strategist",
+      "description": "Configure model preferences in settings",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json"],
+        "pattern": "ANTHROPIC.*MODEL|defaultModel|model"
+      }
+    },
+    {
+      "id": "haiku_handler",
+      "name": "Haiku Handler",
+      "description": "Configure Haiku for lightweight tasks",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "haiku|HAIKU"
+      }
+    },
+    {
+      "id": "opus_orchestrator",
+      "name": "Opus Orchestrator",
+      "description": "Configure Opus for complex reasoning",
+      "category": "performance",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "opus|OPUS"
+      }
+    },
+    {
+      "id": "sonnet_specialist",
+      "name": "Sonnet Specialist",
+      "description": "Configure Sonnet as balanced default",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "sonnet|SONNET"
+      }
+    },
+    {
+      "id": "cache_leverager",
+      "name": "Cache Leverager",
+      "description": "Benefit from prompt caching in long sessions",
+      "category": "performance",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "Session shows cache_read_input_tokens in usage stats"
+      }
+    },
+    {
+      "id": "memory_efficient",
+      "name": "Memory Efficient",
+      "description": "Keep CLAUDE.md under 2000 tokens",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "paths": ["~/.claude/CLAUDE.md", "./CLAUDE.md"],
+        "max_length": 8000
+      }
+    },
+    {
+      "id": "ignore_master",
+      "name": "Ignore Master",
+      "description": "Use .claudeignore to optimize context",
+      "category": "performance",
+      "xp": 125,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_exists",
+        "path": "./.claudeignore"
+      }
+    },
+    {
+      "id": "selective_reader",
+      "name": "Selective Reader",
+      "description": "Configure file reading limits in settings",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "maxFileSize|maxReadLines|fileLimit"
+      }
+    },
+    {
+      "id": "spinner_silencer",
+      "name": "Spinner Silencer",
+      "description": "Disable spinner tips for cleaner output",
+      "category": "performance",
+      "xp": 50,
+      "rarity": "common",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json"],
+        "pattern": "spinnerTipsEnabled.*false"
+      }
+    },
+    {
+      "id": "env_configurator",
+      "name": "Env Configurator",
+      "description": "Configure environment variables in settings",
+      "category": "performance",
+      "xp": 100,
+      "rarity": "uncommon",
+      "detection": {
+        "type": "config_has_key",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "key": "env"
+      }
+    },
+    {
+      "id": "parallel_operator",
+      "name": "Parallel Operator",
+      "description": "Enable parallel tool execution",
+      "category": "performance",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "file_contains",
+        "files": ["~/.claude/settings.json", "./.claude/settings.json"],
+        "pattern": "parallelTools|parallel.*true"
+      }
+    },
+    {
+      "id": "headless_hero",
+      "name": "Headless Hero",
+      "description": "Run Claude Code in headless/non-interactive mode",
+      "category": "performance",
+      "xp": 150,
+      "rarity": "rare",
+      "detection": {
+        "type": "manual",
+        "trigger": "User runs Claude with --headless flag or in CI/CD"
+      }
+    }
+  ],
+  "notes": {
+    "category_update": "Add 'performance' to the categories array",
+    "workflow_existing": ["git_ready", "plan_mode", "plan_creator", "permission_config", "bypass_mode", "vim_mode", "output_styler", "context_watcher", "cost_tracker", "session_namer", "rewinder", "background_task"],
+    "duplicate_check": "Note: context_watcher and cost_tracker exist in workflow - context_conscious and token_economist in performance are similar but specifically focused on performance monitoring behavior",
+    "progression_paths": {
+      "planning": ["plan_mode -> plan_creator -> plan_strategist"],
+      "permissions": ["permission_config -> bypass_mode -> permission_sculptor"],
+      "sessions": ["session_namer -> session_librarian"],
+      "context": ["context_conscious -> context_optimizer -> memory_efficient -> ignore_master"],
+      "models": ["model_strategist -> haiku_handler/sonnet_specialist/opus_orchestrator"]
+    }
+  }
+}
