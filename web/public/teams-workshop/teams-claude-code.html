@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code for Teams - Team Mastery Workshop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="slides-shared.css">
+</head>
+<body>
+    <!-- Side Navigation Toggle -->
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+
+    <!-- Side Navigation Dock -->
+    <nav class="side-nav" id="sideNav">
+        <div class="side-nav-header">
+            <h2>Claude Code for Teams</h2>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Introduction</div>
+            <div class="nav-item" data-slide="0"><span class="nav-item-number">01</span> Title</div>
+            <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span> Why Teams Are Different</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Configuration</div>
+            <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span> Config Hierarchy</div>
+            <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span> Writing Team CLAUDE.md</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Team Workflows</div>
+            <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span> Command Library</div>
+            <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span> Skills for Expertise</div>
+            <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span> Spec Files</div>
+            <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span> Git-Tracked Todos</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Pull Requests</div>
+            <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span> Creating PRs</div>
+            <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span> PR Review Agents</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Security</div>
+            <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span> Security Foundations</div>
+            <div class="nav-item" data-slide="11"><span class="nav-item-number">12</span> Environment Permissions</div>
+            <div class="nav-item" data-slide="12"><span class="nav-item-number">13</span> Secrets Management</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Scale & Governance</div>
+            <div class="nav-item" data-slide="13"><span class="nav-item-number">14</span> Subagents for Teams</div>
+            <div class="nav-item" data-slide="14"><span class="nav-item-number">15</span> Enterprise Config</div>
+            <div class="nav-item" data-slide="15"><span class="nav-item-number">16</span> Audit & Compliance</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Collaboration</div>
+            <div class="nav-item" data-slide="16"><span class="nav-item-number">17</span> Slack & Communication</div>
+            <div class="nav-item" data-slide="17"><span class="nav-item-number">18</span> Session Handoffs</div>
+            <div class="nav-item" data-slide="18"><span class="nav-item-number">19</span> Onboarding</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Reference</div>
+            <div class="nav-item" data-slide="19"><span class="nav-item-number">20</span> Quick Reference</div>
+            <div class="nav-item" data-slide="20"><span class="nav-item-number">21</span> Conclusion</div>
+        </div>
+    </nav>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+
+        <!-- Slide 0: Title -->
+        <div class="slide title-slide active" data-index="0">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Team Workshop</span>
+                <h1>Claude Code for Teams</h1>
+                <p class="subtitle">From Individual Power to Team Leverage</p>
+                <p class="author">Prerequisites: Individual Claude Code proficiency (Level 1 & 2)</p>
+            </div>
+        </div>
+
+        <!-- Slide 1: Why Teams Are Different -->
+        <div class="slide" data-index="1">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Introduction</span>
+                <h2>Why Teams Are Different</h2>
+                <p>Individual Claude usage vs team Claude usage requires a mindset shift.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>👤 Individual Challenges</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>"How do I use Claude?"</li>
+                            <li>Personal productivity</li>
+                            <li>Learning the tool</li>
+                            <li>My preferences</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👥 Team Challenges</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>"How do we use Claude <strong>consistently</strong>?"</li>
+                            <li>Knowledge sharing</li>
+                            <li>Security & governance</li>
+                            <li>Collaboration & handoffs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>The shift:</strong> From "my Claude" to "our Claude" — everyone's Claude behaving the same way, safely, and effectively.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Configuration Hierarchy -->
+        <div class="slide" data-index="2">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Configuration</span>
+                <h2>Configuration Hierarchy</h2>
+                <p>The foundation of team Claude usage — layered configuration.</p>
+
+                <div class="code-block">
+~/.claude/CLAUDE.md                    # Personal preferences
+├── /org/standards/CLAUDE.md           # Company-wide (symlinked)
+├── /project/CLAUDE.md                 # Project context
+│   ├── /project/backend/CLAUDE.md     # Backend conventions
+│   └── /project/frontend/CLAUDE.md    # Frontend conventions
+                </div>
+
+                <h3>Override Precedence</h3>
+                <p><strong>Directory > Project > Org > Personal</strong></p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Distribution Methods</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Git submodule for org standards</li>
+                            <li>Symlinks to shared config</li>
+                            <li>CI validates consistency</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Key Insight</h4>
+                        <p style="font-size: 0.9rem;">Security rules at org level can't be overridden. Style preferences can be customized per project.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Writing Team CLAUDE.md -->
+        <div class="slide" data-index="3">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Configuration</span>
+                <h2>Writing Effective Team CLAUDE.md</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>✅ DO Include</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li>Tech stack and versions</li>
+                            <li>Architectural patterns</li>
+                            <li>Code conventions</li>
+                            <li>Testing requirements</li>
+                            <li>PR/commit format</li>
+                            <li>Security rules</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>❌ DON'T Include</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li>Personal preferences</li>
+                            <li>Secrets or credentials</li>
+                            <li>Temporary workarounds</li>
+                            <li>Aspirational goals (only actual practice)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Example Team CLAUDE.md</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+# Acme Backend API
+## Tech Stack
+- Python 3.11, FastAPI, SQLAlchemy 2.0, PostgreSQL 15
+
+## Conventions
+- All endpoints use /api/v1/ prefix
+- Repository pattern for data access
+- Async everywhere (no sync DB calls)
+
+## PR Requirements
+- Type hints on all functions
+- Unit tests for new functionality
+- No secrets in code (use env vars)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Team Command Library -->
+        <div class="slide" data-index="4">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Team Workflows</span>
+                <h2>Team Command Library</h2>
+                <p>Encode team workflows as reusable commands — version controlled in git.</p>
+
+                <div class="code-block">
+.claude/commands/
+├── review-pr.md        # /review-pr - Team PR checklist
+├── release.md          # /release - Release process
+├── hotfix.md           # /hotfix - Emergency fixes
+├── onboard.md          # /onboard - New dev setup
+├── security-check.md   # /security-check - Security audit
+└── incident.md         # /incident - Incident response
+                </div>
+
+                <h3>Example: /review-pr Command</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+Review this PR against our team standards:
+1. **Code Quality** - Conventions, naming, complexity
+2. **Testing** - Unit tests, edge cases, no flaky tests
+3. **Security** - No secrets, input validation, SQL safety
+4. **Documentation** - Comments, API docs updated
+
+Provide specific feedback with file:line references.
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Key insight:</strong> Team reviews changes to commands too — they're code!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Skills for Team Expertise -->
+        <div class="slide" data-index="5">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Team Workflows</span>
+                <h2>Skills for Team Expertise</h2>
+                <p>Skills are auto-invoked when relevant — encode domain knowledge Claude uses automatically.</p>
+
+                <div class="code-block">
+.claude/skills/
+├── database-migrations/
+│   └── SKILL.md        # How we do migrations
+├── api-versioning/
+│   └── SKILL.md        # API version strategy
+├── error-handling/
+│   └── SKILL.md        # Error patterns
+└── feature-flags/
+    └── SKILL.md        # Feature flag system
+                </div>
+
+                <h3>Example: Database Migration Skill</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+# When creating database migrations:
+1. Use Alembic for all migrations
+2. Always include rollback logic
+3. Large tables: Use batched migrations (avoid locks)
+4. Never drop columns in prod - deprecate first
+
+## Patterns
+- Adding column: Make nullable → backfill → set NOT NULL
+- Renaming: Create new → migrate data → drop old
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Spec Files -->
+        <div class="slide" data-index="6">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Team Workflows</span>
+                <h2>Spec Files for Planning</h2>
+                <p>Complex features need specs BEFORE coding. Prevents wasted work.</p>
+
+                <div class="code-block" style="font-size: 0.85rem;">
+# Feature: JWT Authentication
+
+## Problem
+Current auth is session-based, doesn't scale for mobile.
+
+## Technical Approach
+1. Add JWT generation to login endpoint
+2. Create refresh token endpoint
+3. Update middleware to validate JWT
+
+## Open Questions
+- Token expiry time? (proposed: 15min access, 7d refresh)
+- Store refresh tokens in Redis or DB?
+
+## Acceptance Criteria
+- [ ] JWT login works
+- [ ] Refresh flow works
+- [ ] Load tested to 1000 req/s
+                </div>
+
+                <h3>Workflow</h3>
+                <ul>
+                    <li>Dev writes spec with Claude's help</li>
+                    <li>Team reviews spec (async or sync)</li>
+                    <li>Questions resolved <strong>before</strong> coding</li>
+                    <li>Claude implements against spec</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Git-Tracked Todos -->
+        <div class="slide" data-index="7">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Team Workflows</span>
+                <h2>Git-Tracked Todos</h2>
+                <p>Make Claude's work visible to the team with <code class="code-inline">TODO.md</code> in repo.</p>
+
+                <div class="code-block" style="font-size: 0.9rem;">
+# Current Sprint Tasks
+
+## In Progress
+- [ ] 🔄 Implement JWT refresh endpoint (@sarah)
+  - [x] Create endpoint skeleton
+  - [x] Add token validation
+  - [ ] Add rate limiting
+  - [ ] Write tests
+
+## Blocked
+- [ ] ⏸️ Mobile push notifications (@john)
+  - Waiting on Firebase credentials from DevOps
+
+## Up Next
+- [ ] User profile API
+- [ ] Password reset flow
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Benefits</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Standups reference TODO.md</li>
+                            <li>Handoffs are clear</li>
+                            <li>Progress visible in git history</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Usage</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Update TODO.md as you
+complete tasks"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Creating PRs -->
+        <div class="slide" data-index="8">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Pull Requests</span>
+                <h2>Creating PRs with Claude</h2>
+                <p>Claude creates consistent PRs following team templates.</p>
+
+                <h3>PR Template (in CLAUDE.md)</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+When creating PRs, use this format:
+
+## Summary
+[1-3 sentences on what this PR does]
+
+## Changes
+- [Bullet points of key changes]
+
+## Testing
+- [ ] Unit tests pass
+- [ ] Manual testing done
+
+## Checklist
+- [ ] Code follows our style guide
+- [ ] No secrets in code
+- [ ] Migration included (if DB changes)
+                </div>
+
+                <div class="highlight-box">
+                    <p>Claude generates this automatically from the diff. Every PR looks the same, has the same quality bar.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: PR Review Agents -->
+        <div class="slide" data-index="9">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Pull Requests</span>
+                <h2>PR Review with Agents</h2>
+                <p>Use specialized agents for thorough, consistent reviews.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Built-in Review Agents</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li><code class="code-inline">code-reviewer</code> - Code quality</li>
+                            <li><code class="code-inline">silent-failure-hunter</code> - Error handling</li>
+                            <li><code class="code-inline">pr-test-analyzer</code> - Test coverage</li>
+                            <li><code class="code-inline">type-design-analyzer</code> - Type safety</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Team Command</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+/review-pr
+                        </div>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Invokes your team's review checklist</p>
+                    </div>
+                </div>
+
+                <h3>Multi-Agent Review</h3>
+                <div class="code-block">
+"Run code-reviewer, silent-failure-hunter, and pr-test-analyzer
+on this PR in parallel"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Security Foundations -->
+        <div class="slide" data-index="10">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Security</span>
+                <h2>Security Foundations</h2>
+                <p>What Claude should NEVER see — define boundaries upfront.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🚫 Never in Context</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Production database credentials</li>
+                            <li>API keys (prod or third-party)</li>
+                            <li>Private keys, certificates</li>
+                            <li>Customer PII</li>
+                            <li>Internal security docs</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📝 .claudeignore</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+# Files Claude should not read
+.env
+.env.*
+*.pem
+*.key
+secrets/
+credentials/
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Security Rules in CLAUDE.md</h3>
+                <div class="code-block" style="font-size: 0.9rem;">
+## Security Rules (NEVER VIOLATE)
+- NEVER read .env files
+- NEVER output secrets even if asked
+- ALWAYS use environment variables for secrets
+- ALWAYS use parameterized queries (no string SQL)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Environment Permissions -->
+        <div class="slide" data-index="11">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Security</span>
+                <h2>Environment-Based Permissions</h2>
+                <p>Different rules for dev, staging, and production.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🛠️ Development</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li>Full access to run commands</li>
+                            <li>Can drop/recreate databases</li>
+                            <li>Can install packages</li>
+                            <li>YOLO mode acceptable</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎭 Staging</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li>Can deploy, run migrations</li>
+                            <li>Cannot access prod data</li>
+                            <li>Confirm destructive ops</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔒 Production</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li><strong>Read-only by default</strong></li>
+                            <li>Deploy through CI/CD only</li>
+                            <li>No direct database access</li>
+                            <li>Full audit logging</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Implementation</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+## If ENVIRONMENT=production
+- DENY ALL direct changes
+- Route through CI/CD
+- Read-only operations only
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Secrets Management -->
+        <div class="slide" data-index="12">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Security</span>
+                <h2>Secrets Management</h2>
+                <p>Patterns for handling secrets without exposing them to Claude.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Pattern 1: Reference by Name</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Use the Stripe API key from env"
+# Claude writes:
+os.environ['STRIPE_API_KEY']
+# Never sees actual key
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Pattern 2: .env.example</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+# .env.example (safe to read)
+DATABASE_URL=postgresql://...
+STRIPE_KEY=sk_test_...
+# Claude knows what exists
+# Never reads actual .env
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Detection Hooks</h3>
+                <div class="code-block" style="font-size: 0.9rem;">
+{
+  "hooks": {
+    "PreToolUse": {
+      "Read": "scripts/check-secrets.sh"
+    }
+  }
+}
+                </div>
+                <p>Script blocks reading files that might contain secrets.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Subagents for Teams -->
+        <div class="slide" data-index="13">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Scale & Governance</span>
+                <h2>Subagents for Team Tasks</h2>
+                <p>Specialized agents working in parallel for team workflows.</p>
+
+                <h3>Team Workflow Examples</h3>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Security Review</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+"Run code-reviewer focused on
+security, silent-failure-hunter,
+and Explore to find all auth
+code - in parallel"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Release Prep</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+"Run pr-test-analyzer on all
+changes since last release,
+code-reviewer for quality,
+and generate release notes"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Onboarding Exploration</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+"Use Explore agents to map:
+1) the API layer
+2) the data layer
+3) the auth system"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Available Agents</h4>
+                        <ul style="font-size: 0.85rem;">
+                            <li><code class="code-inline">Explore</code> - Navigation</li>
+                            <li><code class="code-inline">Plan</code> - Architecture</li>
+                            <li><code class="code-inline">code-reviewer</code></li>
+                            <li><code class="code-inline">pr-test-analyzer</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Enterprise Configuration -->
+        <div class="slide" data-index="14">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Scale & Governance</span>
+                <h2>Enterprise Configuration</h2>
+                <p>Centralized team settings — consistent, versioned, auditable.</p>
+
+                <div class="code-block">
+/org/claude-config/
+├── CLAUDE.md           # Org-wide standards
+├── commands/           # Org-wide commands
+├── skills/             # Org-wide skills
+└── .claudeignore       # Org-wide exclusions
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Distribution Methods</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Git submodule in each project</li>
+                            <li>Symlinks to shared network path</li>
+                            <li>CI job that syncs config</li>
+                            <li>Package manager for config</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Config Versioning</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+# .claude/config.yaml
+org_config_version: "2.3.1"
+team_config_version: "1.5.0"
+                        </div>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">CI validates versions match</p>
+                    </div>
+                </div>
+
+                <h3>API Key Management</h3>
+                <p>Team API key (shared tracking) or per-developer keys (individual tracking), with rotation process and usage alerts.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Audit & Compliance -->
+        <div class="slide" data-index="15">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Scale & Governance</span>
+                <h2>Audit & Compliance</h2>
+                <p>Track Claude usage for governance and compliance requirements.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>What to Log</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Who used Claude (developer)</li>
+                            <li>Files read and modified</li>
+                            <li>Commands executed</li>
+                            <li>Timestamp and duration</li>
+                            <li>Session ID for tracing</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Implementation</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+{
+  "hooks": {
+    "PostToolUse": {
+      "*": "scripts/audit-log.sh"
+    }
+  }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Audit Log Format</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+{"timestamp": "2025-01-06T14:32:00Z", "developer": "sarah@company.com",
+ "action": "Edit", "file": "src/auth/login.py", "project": "backend-api"}
+                </div>
+
+                <p>Monthly usage reports, file access patterns, anomaly detection, cost tracking per team.</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Slack & Communication -->
+        <div class="slide" data-index="16">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Collaboration</span>
+                <h2>Slack & Communication</h2>
+                <p>Keep the team informed with notifications and shared learnings.</p>
+
+                <h3>Slack Integration Patterns</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🚀 Deployment Notifications</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+curl -X POST $SLACK_WEBHOOK \
+  -d '{"text":"🚀 Deployed v1.2.3
+  to staging by @sarah"}'
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📝 PR Ready</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+curl -X POST $SLACK_WEBHOOK \
+  -d '{"text":"📝 PR ready for
+  review: Add JWT auth"}'
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Recommended Channels</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 120px;"><code class="code-inline">#claude-tips</code></div>
+                        <div class="desc">Share useful prompts and patterns</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 120px;"><code class="code-inline">#claude-commands</code></div>
+                        <div class="desc">Announce new team commands</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Session Handoffs -->
+        <div class="slide" data-index="17">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Collaboration</span>
+                <h2>Session Handoffs</h2>
+                <p>Continue work across team members — don't lose context.</p>
+
+                <h3>The Handoff Problem</h3>
+                <p>Sarah starts feature → Sarah goes on PTO → John needs to continue</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Solution 1: Export Session</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+/export
+# Full context as markdown
+# Share via Slack/email
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Solution 2: Git Context</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+# CONTEXT.md (in feature branch)
+## Current State
+JWT login complete, refresh WIP
+## Decisions Made
+Using RS256 for JWT signing
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Solution 3: Named Sessions</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+/rename "jwt-auth-sarah"
+# John can reference later
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Solution 4: TODO.md Notes</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+## Handoff (@sarah → @john)
+- Rate limiting: see Slack Jan 5
+- Tests in tests/auth/ examples
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Onboarding -->
+        <div class="slide" data-index="18">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Collaboration</span>
+                <h2>Onboarding New Members</h2>
+                <p>Claude accelerates onboarding — CLAUDE.md becomes living documentation.</p>
+
+                <h3>The /onboard Command</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+# .claude/commands/onboard.md
+Welcome to the team! Let me help you get set up.
+
+1. **Environment Setup** - Check tools, versions, hooks
+2. **Codebase Tour** - Directory structure, entry points, request flow
+3. **Key Concepts** - Architectural patterns, typical feature implementation
+4. **First Task** - Find good-first-issue, explain context, guide through it
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>CLAUDE.md as Docs</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Stays up to date (team maintains it)</li>
+                            <li>Actually used (Claude reads it)</li>
+                            <li>Covers real decisions</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Explore for Understanding</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.8rem;">
+"Use Explore agent to give
+me an overview of how auth
+works, including all files
+and the request flow"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Quick Reference -->
+        <div class="slide" data-index="19">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Reference</span>
+                <h2>Team Setup Checklist</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Configuration</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+                            <code class="code-inline">~/.claude/CLAUDE.md</code><br>
+                            <code class="code-inline">/project/CLAUDE.md</code><br>
+                            <code class="code-inline">.claudeignore</code><br>
+                            <code class="code-inline">.claude/commands/</code><br>
+                            <code class="code-inline">.claude/skills/</code>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Essential Commands</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+                            <code class="code-inline">/review-pr</code><br>
+                            <code class="code-inline">/release</code><br>
+                            <code class="code-inline">/onboard</code><br>
+                            <code class="code-inline">/security-check</code><br>
+                            <code class="code-inline">/incident</code>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Security Rules</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+                            Never read .env files<br>
+                            Use env vars for secrets<br>
+                            Confirm prod operations<br>
+                            Log all actions for audit<br>
+                            Different rules per env
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Collaboration</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">
+                            Export sessions for handoffs, track todos in git, share learnings in Slack, name sessions for reference
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Governance</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">
+                            Centralized config versioning, audit hooks, usage tracking, compliance reporting
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Conclusion -->
+        <div class="slide" data-index="20">
+            <div class="slide-content" style="text-align: center;">
+                <span class="slide-badge badge-blue">Team Workshop Complete</span>
+                <h2>Building Team Muscle Memory</h2>
+
+                <p style="max-width: 700px; margin: 2rem auto;">The goal: Every team member's Claude behaves <strong>consistently</strong>, <strong>safely</strong>, and <strong>effectively</strong>.</p>
+
+                <div class="feature-grid" style="max-width: 700px; margin: 2rem auto;">
+                    <div class="feature-card">
+                        <h4>📝 Configuration is Foundation</h4>
+                        <p>Invest in team CLAUDE.md — it pays dividends</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📜 Commands Encode Workflows</h4>
+                        <p>Team knowledge becomes reusable</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔒 Security is Non-Negotiable</h4>
+                        <p>Define boundaries upfront, enforce at org level</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👀 Visibility Enables Collaboration</h4>
+                        <p>Git-tracked todos, session exports, Slack updates</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="max-width: 600px; margin: 2rem auto;">
+                    <p style="font-size: 1rem;">Ready to level up your team? We run workshops on Claude Code and agent development.<br><a href="/#contact" style="color: var(--primary-light);">Get in touch →</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">21</span></span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 4.76%;"></div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">←</span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">→</span> Navigate</span>
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">M</span> Menu</span>
+    </div>
+
+    <script src="slides-shared.js"></script>
+</body>
+</html>
