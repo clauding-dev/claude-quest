@@ -49,20 +49,21 @@
             <div class="nav-item" data-slide="11"><span class="nav-item-number">12</span> Browser Automation</div>
             <div class="nav-item" data-slide="12"><span class="nav-item-number">13</span> Git Workflows</div>
             <div class="nav-item" data-slide="13"><span class="nav-item-number">14</span> Tool Chain</div>
+            <div class="nav-item" data-slide="14"><span class="nav-item-number">15</span> LSP Integration</div>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title">Real-World Mastery</div>
-            <div class="nav-item" data-slide="14"><span class="nav-item-number">15</span> Large Codebases</div>
-            <div class="nav-item" data-slide="15"><span class="nav-item-number">16</span> Multi-File Refactoring</div>
-            <div class="nav-item" data-slide="16"><span class="nav-item-number">17</span> Advanced Debugging</div>
-            <div class="nav-item" data-slide="17"><span class="nav-item-number">18</span> Security</div>
+            <div class="nav-item" data-slide="15"><span class="nav-item-number">16</span> Large Codebases</div>
+            <div class="nav-item" data-slide="16"><span class="nav-item-number">17</span> Multi-File Refactoring</div>
+            <div class="nav-item" data-slide="17"><span class="nav-item-number">18</span> Advanced Debugging</div>
+            <div class="nav-item" data-slide="18"><span class="nav-item-number">19</span> Security</div>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title">Reference</div>
-            <div class="nav-item" data-slide="18"><span class="nav-item-number">19</span> Quick Reference</div>
-            <div class="nav-item" data-slide="19"><span class="nav-item-number">20</span> Conclusion</div>
+            <div class="nav-item" data-slide="19"><span class="nav-item-number">20</span> Quick Reference</div>
+            <div class="nav-item" data-slide="20"><span class="nav-item-number">21</span> Conclusion</div>
         </div>
     </nav>
 
@@ -518,8 +519,48 @@ picking up config changes"
             </div>
         </div>
 
-        <!-- Slide 14: Large Codebase Navigation -->
+        <!-- Slide 14: LSP Integration -->
         <div class="slide" data-index="14">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Integration</span>
+                <h2>LSP Integration</h2>
+                <p>Language Server Protocol gives Claude IDE-level code intelligence.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📐 What LSP Provides</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Instant diagnostics & errors</li>
+                            <li>Go to definition</li>
+                            <li>Find all references</li>
+                            <li>Type information on hover</li>
+                            <li>Code completion context</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🚀 Why It Matters</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Faster than grep for navigation</li>
+                            <li>Understands type relationships</li>
+                            <li>Catches errors before running</li>
+                            <li>Works across languages</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Enable LSP</h3>
+                <div class="code-block">
+claude --mcp-server "npx @anthropic/claude-code-lsp"
+                </div>
+
+                <div class="highlight-box">
+                    <p>LSP is especially powerful for refactoring — Claude can find all usages instantly instead of relying on text search.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Large Codebase Navigation -->
+        <div class="slide" data-index="15">
             <div class="slide-content">
                 <span class="slide-badge badge-pink">Real-World Mastery</span>
                 <h2>Large Codebase Navigation</h2>
@@ -544,8 +585,8 @@ picking up config changes"
             </div>
         </div>
 
-        <!-- Slide 15: Complex Multi-File Refactoring -->
-        <div class="slide" data-index="15">
+        <!-- Slide 16: Complex Multi-File Refactoring -->
+        <div class="slide" data-index="16">
             <div class="slide-content">
                 <span class="slide-badge badge-pink">Real-World Mastery</span>
                 <h2>Complex Multi-File Refactoring</h2>
@@ -572,8 +613,8 @@ picking up config changes"
             </div>
         </div>
 
-        <!-- Slide 16: Advanced Debugging Patterns -->
-        <div class="slide" data-index="16">
+        <!-- Slide 17: Advanced Debugging Patterns -->
+        <div class="slide" data-index="17">
             <div class="slide-content">
                 <span class="slide-badge badge-pink">Real-World Mastery</span>
                 <h2>Advanced Debugging Patterns</h2>
@@ -615,8 +656,8 @@ a regression test"
             </div>
         </div>
 
-        <!-- Slide 17: Security-Conscious Development -->
-        <div class="slide" data-index="17">
+        <!-- Slide 18: Security-Conscious Development -->
+        <div class="slide" data-index="18">
             <div class="slide-content">
                 <span class="slide-badge badge-pink">Real-World Mastery</span>
                 <h2>Security-Conscious Development</h2>
@@ -650,8 +691,8 @@ a regression test"
             </div>
         </div>
 
-        <!-- Slide 18: Quick Reference -->
-        <div class="slide" data-index="18">
+        <!-- Slide 19: Quick Reference -->
+        <div class="slide" data-index="19">
             <div class="slide-content">
                 <span class="slide-badge badge-orange">Reference</span>
                 <h2>Quick Reference Card</h2>
@@ -688,8 +729,8 @@ a regression test"
             </div>
         </div>
 
-        <!-- Slide 19: Conclusion -->
-        <div class="slide" data-index="19">
+        <!-- Slide 20: Conclusion -->
+        <div class="slide" data-index="20">
             <div class="slide-content" style="text-align: center;">
                 <span class="slide-badge badge-purple">Level 2 Complete</span>
                 <h2>You're Now a Power User</h2>
@@ -718,7 +759,7 @@ a regression test"
     <!-- Progress Bar -->
     <div class="progress-container">
         <div class="progress-info">
-            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">20</span></span>
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">21</span></span>
         </div>
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill" style="width: 5%;"></div>

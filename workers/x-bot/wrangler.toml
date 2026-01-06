@@ -1,0 +1,13 @@
+name = "claude-quest-x-bot"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[triggers]
+crons = ["0 17 * * *"]  # 9 AM PT - Worker adds 0-60 min random delay
+
+[[kv_namespaces]]
+binding = "QUEST_BOT_STATE"
+id = "fdd1f10775dd4c2aa5d18a9fb9b0568f"
+
+[vars]
+SITE_URL = "https://clauding.dev/quest"

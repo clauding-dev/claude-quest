@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Copy, ExternalLink, Sword, Trophy, Zap, Target } from 'lucide-react';
-import { useState } from 'react';
+import { Copy, ExternalLink, Sword, Trophy, Zap, Target, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import { useProgress } from '../context/ProgressContext';
 import {
   achievements,
@@ -15,8 +15,23 @@ import {
 export default function Dashboard() {
   const { progress, isLoaded } = useProgress();
   const [copied, setCopied] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [headerExpanded, setHeaderExpanded] = useState(false);
+  const setupSectionRef = useRef<HTMLElement>(null);
 
   const totalPossibleXP = getTotalXP();
+
+  // Track when user scrolls past the setup section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (setupSectionRef.current) {
+        const rect = setupSectionRef.current.getBoundingClientRect();
+        setIsScrolled(rect.bottom < 0);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const hasProgress = progress !== null;
   const unlockedCount = progress?.unlockedAchievements.length || 0;
   const userXP = progress?.totalXP || 0;
@@ -46,7 +61,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[#0f0f23] text-white">
       {/* Header */}
-      <header className="border-b border-white/10 bg-[#0a0a1a]">
+      <header className={`border-b border-white/10 bg-[#0a0a1a] ${isScrolled ? 'sticky top-0 z-50' : ''}`}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-purple-600 flex items-center justify-center">
@@ -55,6 +70,16 @@ export default function Dashboard() {
             <span className="text-xl font-bold">Claude Quest</span>
           </Link>
           <nav className="flex items-center gap-6">
+            {/* Quick Setup button - only visible when scrolled */}
+            {isScrolled && (
+              <button
+                onClick={() => setHeaderExpanded(!headerExpanded)}
+                className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Quick Setup
+                {headerExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+            )}
             <Link to="/achievements" className="text-gray-400 hover:text-white transition-colors">
               All Achievements
             </Link>
@@ -68,75 +93,108 @@ export default function Dashboard() {
             </a>
           </nav>
         </div>
+        
+        {/* Expandable setup panel in header */}
+        {isScrolled && headerExpanded && (
+          <div className="border-t border-white/5 bg-[#0a0a1a]">
+            <div className="max-w-6xl mx-auto px-4 py-3 grid md:grid-cols-2 gap-3">
+              <div className="flex items-center gap-2 bg-black/40 rounded px-2 py-1.5 font-mono text-xs">
+                <span className="text-gray-500">📦</span>
+                <code className="flex-1 text-green-400 truncate">{INSTALL_COMMAND}</code>
+                <button
+                  onClick={copyInstallCommand}
+                  className="p-1 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+                  title="Copy command"
+                >
+                  <Copy className={`w-3.5 h-3.5 ${copied ? 'text-green-400' : 'text-gray-400'}`} />
+                </button>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-gray-500">
+                <span>🔄</span>
+                <span>Run <code className="text-amber-400 bg-black/40 px-1.5 py-0.5 rounded">/quest web</code> in Claude Code to sync</span>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="max-w-6xl mx-auto px-4 py-6">
+        {/* Quick Setup - Install & Sync */}
+        <section ref={setupSectionRef} className="grid md:grid-cols-2 gap-3 mb-6">
+          <div className="bg-[#1a1a2e] rounded-lg p-3 border border-white/5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm">📦</span>
+              <span className="text-xs font-medium text-gray-400">Install</span>
+            </div>
+            <div className="flex items-center gap-2 bg-black/40 rounded px-2 py-1.5 font-mono text-xs">
+              <code className="flex-1 text-green-400 truncate">{INSTALL_COMMAND}</code>
+              <button
+                onClick={copyInstallCommand}
+                className="p-1 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+                title="Copy command"
+              >
+                <Copy className={`w-3.5 h-3.5 ${copied ? 'text-green-400' : 'text-gray-400'}`} />
+              </button>
+            </div>
+          </div>
+          <div className="bg-[#1a1a2e] rounded-lg p-3 border border-white/5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm">🔄</span>
+              <span className="text-xs font-medium text-gray-400">Sync Progress</span>
+            </div>
+            <p className="text-xs text-gray-500">
+              Run <code className="text-amber-400 bg-black/40 px-1.5 py-0.5 rounded">/quest web</code> in Claude Code to view your progress here
+            </p>
+          </div>
+        </section>
+
         {/* Hero / XP Display */}
-        <section className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <section className="text-center mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             {hasProgress ? 'Your Quest Progress' : 'Claude Quest'}
           </h1>
 
           {hasProgress ? (
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex items-center gap-3 text-5xl font-bold">
-                <Zap className="w-12 h-12 text-amber-400" />
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex items-center gap-2 text-4xl font-bold">
+                <Zap className="w-10 h-10 text-amber-400" />
                 <span className="text-amber-400">{userXP.toLocaleString()}</span>
-                <span className="text-gray-500 text-2xl">/ {totalPossibleXP.toLocaleString()} XP</span>
+                <span className="text-gray-500 text-xl">/ {totalPossibleXP.toLocaleString()} XP</span>
               </div>
-              <div className="flex items-center gap-6 text-gray-400">
-                <span className="flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-purple-400" />
+              <div className="flex items-center gap-5 text-gray-400 text-sm">
+                <span className="flex items-center gap-1.5">
+                  <Trophy className="w-4 h-4 text-purple-400" />
                   {unlockedCount} / {achievements.length} achievements
                 </span>
                 {progress.streak > 0 && (
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-1.5">
                     🔥 {progress.streak}-day streak
                   </span>
                 )}
               </div>
               {/* Progress bar */}
-              <div className="w-full max-w-md mt-4">
-                <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+              <div className="w-full max-w-sm mt-2">
+                <div className="h-2.5 bg-white/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-amber-500 to-purple-500 rounded-full transition-all"
                     style={{ width: `${(userXP / totalPossibleXP) * 100}%` }}
                   />
                 </div>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 mt-1.5">
                   {Math.round((userXP / totalPossibleXP) * 100)}% complete
                 </p>
               </div>
             </div>
           ) : (
-            <div className="text-gray-400 max-w-xl mx-auto">
-              <p className="text-xl mb-6">
-                Master Claude Code through adventure. Track achievements, earn XP, and become a Champion.
-              </p>
-              {/* Install prompt */}
-              <div className="bg-[#1a1a2e] rounded-xl p-6 text-left">
-                <p className="text-sm text-gray-500 mb-3">Quick install:</p>
-                <div className="flex items-center gap-2 bg-black/50 rounded-lg p-3 font-mono text-sm">
-                  <code className="flex-1 text-green-400 overflow-x-auto">{INSTALL_COMMAND}</code>
-                  <button
-                    onClick={copyInstallCommand}
-                    className="p-2 hover:bg-white/10 rounded transition-colors flex-shrink-0"
-                    title="Copy command"
-                  >
-                    <Copy className={`w-4 h-4 ${copied ? 'text-green-400' : 'text-gray-400'}`} />
-                  </button>
-                </div>
-                <p className="text-xs text-gray-500 mt-3">
-                  Then run <code className="text-amber-400">/quest</code> in Claude Code to see your dashboard
-                </p>
-              </div>
-            </div>
+            <p className="text-gray-400 max-w-lg mx-auto">
+              Master Claude Code through adventure. Track achievements, earn XP, and become a Champion.
+            </p>
           )}
         </section>
 
         {/* Category Progress */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Categories</h2>
+        <section className="mb-10">
+          <h2 className="text-xl font-bold mb-4">Categories</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {categories.map(category => {
               const categoryAchievements = getAchievementsByCategory(category.id);
@@ -184,9 +242,9 @@ export default function Dashboard() {
         </section>
 
         {/* Next Achievements */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Target className="w-6 h-6 text-amber-400" />
+        <section className="mb-10">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Target className="w-5 h-5 text-amber-400" />
             {hasProgress ? 'Next Achievements' : 'Featured Achievements'}
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
@@ -228,9 +286,9 @@ export default function Dashboard() {
 
         {/* Recent Unlocks (if has progress) */}
         {hasProgress && progress.unlockedAchievements.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-purple-400" />
+          <section className="mb-10">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <Trophy className="w-5 h-5 text-purple-400" />
               Recent Unlocks
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -255,20 +313,10 @@ export default function Dashboard() {
           </section>
         )}
 
-        {/* CLI Integration Note */}
-        <section className="bg-gradient-to-r from-purple-500/10 to-amber-500/10 rounded-xl p-6 border border-white/10">
-          <h3 className="font-bold text-lg mb-2">Sync from CLI</h3>
-          <p className="text-gray-400 text-sm mb-4">
-            Run <code className="text-amber-400 bg-black/30 px-2 py-0.5 rounded">/quest web</code> in Claude Code to open this dashboard with your latest progress.
-          </p>
-          <p className="text-gray-500 text-xs">
-            Your progress is stored locally and passed via URL - nothing is sent to any server.
-          </p>
-        </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 mt-12 py-8 text-center text-gray-500 text-sm">
+      <footer className="border-t border-white/10 mt-8 py-6 text-center text-gray-500 text-sm">
         <p>
           Made with ❤️ by humans who believe learning should be fun
         </p>

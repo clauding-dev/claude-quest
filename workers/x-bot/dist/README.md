@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "claude-quest-x-bot" generated at 2026-01-05T21:01:29.567Z.
