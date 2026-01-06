@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Claude Code - Level 2 Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="slides-shared.css">
+</head>
+<body>
+    <!-- Side Navigation Toggle -->
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+
+    <!-- Side Navigation Dock -->
+    <nav class="side-nav" id="sideNav">
+        <div class="side-nav-header">
+            <h2>Advanced Claude Code</h2>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Introduction</div>
+            <div class="nav-item" data-slide="0"><span class="nav-item-number">01</span> Title</div>
+            <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span> Overview</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Agentic Patterns</div>
+            <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span> Multi-Step Workflows</div>
+            <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span> Deep Reasoning</div>
+            <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span> Parallel Execution</div>
+            <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span> Context Mastery</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Power User Features</div>
+            <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span> CLAUDE.md Hierarchy</div>
+            <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span> Commands vs Skills</div>
+            <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span> Hooks System</div>
+            <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span> Model Selection</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Integration</div>
+            <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span> MCP Servers</div>
+            <div class="nav-item" data-slide="11"><span class="nav-item-number">12</span> Browser Automation</div>
+            <div class="nav-item" data-slide="12"><span class="nav-item-number">13</span> Git Workflows</div>
+            <div class="nav-item" data-slide="13"><span class="nav-item-number">14</span> Tool Chain</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Real-World Mastery</div>
+            <div class="nav-item" data-slide="14"><span class="nav-item-number">15</span> Large Codebases</div>
+            <div class="nav-item" data-slide="15"><span class="nav-item-number">16</span> Multi-File Refactoring</div>
+            <div class="nav-item" data-slide="16"><span class="nav-item-number">17</span> Advanced Debugging</div>
+            <div class="nav-item" data-slide="17"><span class="nav-item-number">18</span> Security</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Reference</div>
+            <div class="nav-item" data-slide="18"><span class="nav-item-number">19</span> Quick Reference</div>
+            <div class="nav-item" data-slide="19"><span class="nav-item-number">20</span> Conclusion</div>
+        </div>
+    </nav>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+
+        <!-- Slide 0: Title -->
+        <div class="slide title-slide active" data-index="0">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Level 2</span>
+                <h1>Advanced Claude Code</h1>
+                <p class="subtitle">For Developers Ready to Go Deep</p>
+                <p class="author">Prerequisites: Level 1 (basic prompting, file operations, simple workflows)</p>
+            </div>
+        </div>
+
+        <!-- Slide 1: Overview -->
+        <div class="slide" data-index="1">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Overview</span>
+                <h2>What We'll Cover</h2>
+                <p>Deep patterns and advanced features for power users.</p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🤖 Agentic Patterns</h4>
+                        <p>TodoWrite, deep reasoning, parallelism</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚙️ Power Features</h4>
+                        <p>CLAUDE.md hierarchy, commands, hooks</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔌 Integration</h4>
+                        <p>MCP servers, browser, Git workflows</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏗️ Real-World</h4>
+                        <p>Large codebases, refactoring, debugging</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Multi-Step Autonomous Workflows -->
+        <div class="slide" data-index="2">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Agentic Patterns</span>
+                <h2>Multi-Step Autonomous Workflows</h2>
+                <p>Claude automatically decomposes complex requests into tracked tasks.</p>
+
+                <h3>The Power of TodoWrite</h3>
+                <ul>
+                    <li>Real-time progress visibility as Claude works</li>
+                    <li>Know when to intervene vs. let Claude run</li>
+                    <li>Complex tasks auto-decompose into 8-10+ subtasks</li>
+                </ul>
+
+                <h3>Trigger Patterns</h3>
+                <div class="code-block">
+"Add user authentication to this API"           → 8-10 auto-decomposed tasks
+"Refactor this module to use dependency injection" → systematic multi-file changes
+"Set up CI/CD for this project"                 → infrastructure + config + testing
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Deep Reasoning Triggers -->
+        <div class="slide" data-index="3">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Agentic Patterns</span>
+                <h2>Deep Reasoning Triggers</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Standard Responses</h4>
+                        <p>Quick, surface-level analysis for simple tasks</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Extended Thinking</h4>
+                        <p>Deep architectural reasoning, subtle bug detection</p>
+                    </div>
+                </div>
+
+                <h3>Trigger Phrases</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys"><code class="code-inline">ultrathink</code></div>
+                        <div class="desc">Maximum analysis depth</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><code class="code-inline">think deeply about...</code></div>
+                        <div class="desc">Extended reasoning</div>
+                    </div>
+                </div>
+
+                <h3>When to Use</h3>
+                <p>Architecture decisions, complex debugging (race conditions, memory leaks), security-sensitive code review, performance optimization.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Parallel Execution -->
+        <div class="slide" data-index="4">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Agentic Patterns</span>
+                <h2>Parallel Execution & Batching</h2>
+                <p>Speed through parallelism — Claude identifies independent operations automatically.</p>
+
+                <h3>Enable Parallel Execution</h3>
+                <div class="code-block">
+"Read all test files and identify patterns"     → parallel reads
+"Search for usages across these 5 modules"      → parallel greps
+"Run lint, test, and build checks"              → parallel commands
+                </div>
+
+                <h3>Anti-Pattern (Forces Sequential)</h3>
+                <div class="code-block" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+"Read file A, then based on that read file B"   → sequential dependency
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Pro tip:</strong> Proper prompting enables vs. blocks parallelism. Avoid creating artificial dependencies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Context Window Mastery -->
+        <div class="slide" data-index="5">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Agentic Patterns</span>
+                <h2>Context Window Mastery</h2>
+                <p>Your most precious resource — use it wisely.</p>
+
+                <h3>The Pyramid Pattern</h3>
+                <ul>
+                    <li><strong>Broad search</strong> (Grep/Glob) → identify candidates</li>
+                    <li><strong>Narrow focus</strong> → read only relevant files</li>
+                    <li><strong>Deep dive</strong> → detailed analysis of critical sections</li>
+                </ul>
+
+                <h3>Context Management</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys"><code class="code-inline">/compact</code></div>
+                        <div class="desc">Summarize and compress context</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys">Line ranges</div>
+                        <div class="desc">"Read lines 50-100 of file.py"</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Don't read entire files when you need one function. Let Claude search first, then read matches.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: CLAUDE.md Configuration Hierarchy -->
+        <div class="slide" data-index="6">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Power User Features</span>
+                <h2>CLAUDE.md Configuration Hierarchy</h2>
+
+                <h3>Three-Level Configuration</h3>
+                <div class="code-block">
+~/.claude/CLAUDE.md              # Global (all projects)
+├── ProjectRoot/CLAUDE.md        # Project-specific
+│   ├── backend/CLAUDE.md        # Directory-specific
+│   └── frontend/CLAUDE.md       # Directory-specific
+                </div>
+
+                <p><strong>Override Precedence:</strong> Directory > Project > Global</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Global Example</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+- Use python3, not python
+- Ask public/private before GitHub repos
+- Prefer functional patterns
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Project Example</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+# E-commerce API
+- Framework: FastAPI + SQLAlchemy
+- Testing: pytest with fixtures
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Custom Commands vs Skills -->
+        <div class="slide" data-index="7">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Power User Features</span>
+                <h2>Custom Commands vs Skills</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📜 Commands (User-invoked)</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+.claude/commands/
+├── release.md    → /release
+├── deploy.md     → /deploy
+└── review-pr.md  → /review-pr
+                        </div>
+                        <p style="margin-top: 0.5rem;">Usage: <code class="code-inline">/release 2.1.0</code></p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎓 Skills (Auto-discovered)</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+.claude/skills/
+├── database-migrations/
+│   └── SKILL.md
+└── api-documentation/
+    └── SKILL.md
+                        </div>
+                        <p style="margin-top: 0.5rem;">Claude uses automatically when relevant</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Key Difference:</strong> Commands = explicit user invocation, Skills = automatic capability discovery</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Hooks System -->
+        <div class="slide" data-index="8">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Power User Features</span>
+                <h2>Hooks System</h2>
+                <p>Automated actions on Claude events.</p>
+
+                <h3>Hook Types</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 100px;">Pre-edit</div>
+                        <div class="desc">Validate before changes</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 100px;">Post-edit</div>
+                        <div class="desc">Format after changes</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 100px;">Pre-commit</div>
+                        <div class="desc">Check before committing</div>
+                    </div>
+                </div>
+
+                <h3>Configuration (.claude/hooks.json)</h3>
+                <div class="code-block">
+{
+  "post-edit": {
+    "*.py": ["black", "isort"],
+    "*.ts": ["prettier --write"]
+  },
+  "pre-commit": {
+    "*": ["npm run lint", "npm run test"]
+  }
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Model Selection Strategy -->
+        <div class="slide" data-index="9">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Power User Features</span>
+                <h2>Model Selection Strategy</h2>
+                <p>Right model for the job.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Best For</th>
+                            <th>Speed</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Haiku</strong></td>
+                            <td>Simple operations, high volume</td>
+                            <td>Fastest</td>
+                            <td>Lowest</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sonnet</strong></td>
+                            <td>Routine coding, most tasks</td>
+                            <td>Fast</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opus</strong></td>
+                            <td>Complex reasoning, architecture</td>
+                            <td>Slower</td>
+                            <td>Highest</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Strategic Pattern</h3>
+                <ul>
+                    <li><strong>Opus</strong> for architecture analysis</li>
+                    <li><strong>Sonnet</strong> for implementation</li>
+                    <li><strong>Haiku</strong> for bulk operations (formatting, simple fixes)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 10: MCP Server Architecture -->
+        <div class="slide" data-index="10">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Integration</span>
+                <h2>MCP Server Architecture</h2>
+                <p>Model Context Protocol = Extensibility</p>
+
+                <h3>What MCP Enables</h3>
+                <ul>
+                    <li>Database queries (Postgres, SQLite)</li>
+                    <li>Cloud platform integration (Cloudflare, AWS)</li>
+                    <li>External APIs (Notion, Linear, GitHub)</li>
+                    <li>Custom tool servers</li>
+                </ul>
+
+                <h3>Configuration (.mcp.json)</h3>
+                <div class="code-block" style="font-size: 0.9rem;">
+{
+  "mcpServers": {
+    "cloudflare": {
+      "command": "npx",
+      "args": ["@anthropic/mcp-cloudflare"]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["@anthropic/mcp-postgres"],
+      "env": { "DATABASE_URL": "${DATABASE_URL}" }
+    }
+  }
+}
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>After adding:</strong> Must restart Claude Code (<code class="code-inline">/exit</code> and reopen)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Browser Automation -->
+        <div class="slide" data-index="11">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Integration</span>
+                <h2>Browser Automation</h2>
+                <p>Claude sees and controls browsers.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Capabilities</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Navigate to URLs</li>
+                            <li>Read page content (accessibility tree)</li>
+                            <li>Click, type, fill forms</li>
+                            <li>Take screenshots</li>
+                            <li>Execute JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Key Patterns</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Snapshot-based interaction</li>
+                            <li>Accessibility tree > screenshots</li>
+                            <li>GIF recording for demos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Use Cases</h3>
+                <p>E2E testing workflows, web scraping with intelligence, form automation, visual debugging.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Git Workflow Mastery -->
+        <div class="slide" data-index="12">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Integration</span>
+                <h2>Git Workflow Mastery</h2>
+                <p>Beyond basic commits — smart messages, HEREDOC formatting.</p>
+
+                <h3>Smart Commit Messages</h3>
+                <ul>
+                    <li>Claude reads diffs automatically</li>
+                    <li>Generates contextual messages</li>
+                    <li>Follows repo conventions</li>
+                </ul>
+
+                <h3>HEREDOC Formatting (Required for multi-line)</h3>
+                <div class="code-block" style="font-size: 0.85rem;">
+git commit -m "$(cat <<'EOF'
+feat: Add user authentication
+
+- Implement JWT token generation
+- Add login/logout endpoints
+- Create auth middleware
+EOF
+)"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: External Tool Chain -->
+        <div class="slide" data-index="13">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Integration</span>
+                <h2>External Tool Chain Integration</h2>
+                <p>Claude in your ecosystem.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🐳 Docker</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Build and run docker-compose"
+"Debug why container isn't
+picking up config changes"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>☁️ Cloud CLIs</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Deploy this worker to Cloudflare"
+"Check AWS Lambda logs for errors"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔄 Background Processes</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Start dev server in background"
+"Run test suite, let me know when done"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🚀 CI/CD</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Trigger GitHub Actions workflow"
+"Check why the build is failing"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Large Codebase Navigation -->
+        <div class="slide" data-index="14">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Real-World Mastery</span>
+                <h2>Large Codebase Navigation</h2>
+
+                <h3>The Explore Agent</h3>
+                <div class="code-block">
+"Use the Explore agent to understand how authentication works"
+→ Spawns specialized agent for codebase exploration
+                </div>
+
+                <h3>Spiral Search Pattern</h3>
+                <ul>
+                    <li><strong>Grep</strong> — find keyword occurrences</li>
+                    <li><strong>Glob</strong> — find file patterns</li>
+                    <li><strong>Read</strong> — dive into specific files</li>
+                    <li><strong>Understand</strong> — build mental model</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Pro Tips:</strong> Start with README, package.json, main entry points. Follow imports to understand dependencies. Don't read everything — sample strategically.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Complex Multi-File Refactoring -->
+        <div class="slide" data-index="15">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Real-World Mastery</span>
+                <h2>Complex Multi-File Refactoring</h2>
+                <p>The safe refactoring pattern.</p>
+
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 40px;">1.</div>
+                        <div class="desc"><strong>Map dependencies first</strong> — "Find all usages of UserService before we rename it"</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 40px;">2.</div>
+                        <div class="desc"><strong>Plan the change</strong> — "Enter plan mode - I want to rename User to Account"</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 40px;">3.</div>
+                        <div class="desc"><strong>Execute atomically</strong> — Claude tracks all changes, can rollback if tests fail</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 40px;">4.</div>
+                        <div class="desc"><strong>Verify</strong> — "Run tests to verify the refactoring didn't break anything"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Advanced Debugging Patterns -->
+        <div class="slide" data-index="16">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Real-World Mastery</span>
+                <h2>Advanced Debugging Patterns</h2>
+                <p>Systematic bug hunting.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>1. Gather Evidence</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Read error logs, identify patterns"
+"Check network requests for failures"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>2. Form Hypotheses</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Think deeply about what could
+cause this intermittent failure"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>3. Trace Through Code</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Follow the code path from API
+endpoint to database"
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>4. Test Fix</h4>
+                        <div class="code-block" style="margin-top: 0.5rem; font-size: 0.85rem;">
+"Implement the fix and add
+a regression test"
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Browser Debugging</h3>
+                <p><code class="code-inline">read_console_messages</code> for JavaScript errors, <code class="code-inline">read_network_requests</code> for API failures, screenshots at each step.</p>
+            </div>
+        </div>
+
+        <!-- Slide 17: Security-Conscious Development -->
+        <div class="slide" data-index="17">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Real-World Mastery</span>
+                <h2>Security-Conscious Development</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🚫 What Claude Should NOT See</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>API keys and secrets</li>
+                            <li>Production database credentials</li>
+                            <li>Private keys</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>✅ Safe Patterns</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Use environment variables</li>
+                            <li>Reference secrets by name, not value</li>
+                            <li>Share .env structure without contents</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Security Audit Workflow</h3>
+                <div class="code-block">
+"Scan for hardcoded secrets in the codebase"
+"Check dependencies for known vulnerabilities"
+"Identify potential SQL injection points"
+"Generate a security report"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Quick Reference -->
+        <div class="slide" data-index="18">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Reference</span>
+                <h2>Quick Reference Card</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Trigger Phrases</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">ultrathink</code> Max depth<br>
+                            <code class="code-inline">think deeply</code> Extended<br>
+                            <code class="code-inline">plan mode</code> Arch first<br>
+                            <code class="code-inline">in parallel</code> Concurrent
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">File Locations</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">~/.claude/CLAUDE.md</code><br>
+                            <code class="code-inline">./CLAUDE.md</code><br>
+                            <code class="code-inline">.claude/commands/*.md</code><br>
+                            <code class="code-inline">.mcp.json</code>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Subagent Types</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">Explore</code> Navigation<br>
+                            <code class="code-inline">Plan</code> Architecture<br>
+                            <code class="code-inline">general-purpose</code> Multi-step<br>
+                            <code class="code-inline">claude-code-guide</code> Docs
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Conclusion -->
+        <div class="slide" data-index="19">
+            <div class="slide-content" style="text-align: center;">
+                <span class="slide-badge badge-purple">Level 2 Complete</span>
+                <h2>You're Now a Power User</h2>
+
+                <p style="max-width: 600px; margin: 2rem auto;">You've mastered the advanced patterns. Now combine them — use TodoWrite for complex tasks, ultrathink for architecture, parallel execution for speed, and MCP for integration.</p>
+
+                <div class="feature-grid" style="max-width: 600px; margin: 2rem auto;">
+                    <div class="feature-card">
+                        <h4>🎯 Practice</h4>
+                        <p>Try refactoring a real codebase with plan mode</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔧 Customize</h4>
+                        <p>Set up your CLAUDE.md hierarchy and hooks</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="max-width: 600px; margin: 2rem auto;">
+                    <p style="font-size: 1rem;">Want hands-on training? We run workshops on Claude Code and agent development.<br><a href="/#contact" style="color: var(--primary-light);">Get in touch →</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">20</span></span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 5%;"></div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">←</span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">→</span> Navigate</span>
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">M</span> Menu</span>
+    </div>
+
+    <script src="slides-shared.js"></script>
+</body>
+</html>

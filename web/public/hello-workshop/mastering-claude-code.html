@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Claude Code - ajents.company</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="slides-shared.css">
+</head>
+<body>
+    <!-- Side Navigation Toggle -->
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+    </button>
+
+    <!-- Side Navigation Dock -->
+    <nav class="side-nav" id="sideNav">
+        <div class="side-nav-header">
+            <h2>Claude Code</h2>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Introduction</div>
+            <div class="nav-item" data-slide="0"><span class="nav-item-number">01</span> Title</div>
+            <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span> Overview</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Getting Started</div>
+            <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span> The /init Command</div>
+            <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span> Memory & @ Mentions</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Essential Shortcuts</div>
+            <div class="nav-item" data-slide="4"><span class="nav-item-number">05</span> ! Prefix & Esc Esc</div>
+            <div class="nav-item" data-slide="5"><span class="nav-item-number">06</span> Search & Stash</div>
+            <div class="nav-item" data-slide="6"><span class="nav-item-number">07</span> All Shortcuts</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Session Management</div>
+            <div class="nav-item" data-slide="7"><span class="nav-item-number">08</span> Continue & Resume</div>
+            <div class="nav-item" data-slide="8"><span class="nav-item-number">09</span> Remote & Export</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Productivity</div>
+            <div class="nav-item" data-slide="9"><span class="nav-item-number">10</span> Vim Mode</div>
+            <div class="nav-item" data-slide="10"><span class="nav-item-number">11</span> Status & Context</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Thinking & Planning</div>
+            <div class="nav-item" data-slide="11"><span class="nav-item-number">12</span> Ultrathink & Plan</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Permissions & Safety</div>
+            <div class="nav-item" data-slide="12"><span class="nav-item-number">13</span> Sandbox & YOLO</div>
+            <div class="nav-item" data-slide="13"><span class="nav-item-number">14</span> Hooks</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Automation</div>
+            <div class="nav-item" data-slide="14"><span class="nav-item-number">15</span> Headless & Commands</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Browser & Advanced</div>
+            <div class="nav-item" data-slide="15"><span class="nav-item-number">16</span> Chrome Extension</div>
+            <div class="nav-item" data-slide="16"><span class="nav-item-number">17</span> Subagents</div>
+            <div class="nav-item" data-slide="17"><span class="nav-item-number">18</span> Skills & Plugins</div>
+            <div class="nav-item" data-slide="18"><span class="nav-item-number">19</span> LSP & SDK</div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Reference</div>
+            <div class="nav-item" data-slide="19"><span class="nav-item-number">20</span> Quick Reference</div>
+            <div class="nav-item" data-slide="20"><span class="nav-item-number">21</span> Conclusion</div>
+        </div>
+    </nav>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+
+        <!-- Slide 0: Title -->
+        <div class="slide title-slide active" data-index="0">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">ajents.company</span>
+                <h1>Mastering Claude Code</h1>
+                <p class="subtitle">From Zero to Power User</p>
+                <p class="author">Content adapted from <a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" style="color: var(--primary-light); text-decoration: none;">Ado Kukic's 31-day guide</a></p>
+            </div>
+        </div>
+
+        <!-- Slide 1: Overview -->
+        <div class="slide" data-index="1">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Introduction</span>
+                <h2>What We'll Cover</h2>
+                <p>From beginner essentials to advanced patterns — everything you need to master Claude Code.</p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🚀 Getting Started</h4>
+                        <p>Project init, memory, and @ mentions</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⌨️ Shortcuts</h4>
+                        <p>Essential keyboard productivity</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📁 Sessions</h4>
+                        <p>Continue, resume, and export</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🧠 Thinking</h4>
+                        <p>Ultrathink and plan modes</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔒 Safety</h4>
+                        <p>Sandbox, YOLO, and hooks</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🤖 Advanced</h4>
+                        <p>Subagents, plugins, and SDK</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: /init Command -->
+        <div class="slide" data-index="2">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Getting Started</span>
+                <h2>The <code class="code-inline">/init</code> Command</h2>
+                <p>Claude generates project onboarding documentation automatically.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Creates a <code class="code-inline">CLAUDE.md</code> file containing:</strong></p>
+                </div>
+
+                <ul>
+                    <li>Build commands and scripts</li>
+                    <li>Directory purposes and structure</li>
+                    <li>Code conventions and patterns</li>
+                    <li>Architectural decisions</li>
+                </ul>
+
+                <h3>For Larger Projects</h3>
+                <p>Create <code class="code-inline">.claude/rules/</code> directories with modular, topic-specific instructions.</p>
+
+                <div class="code-block">
+                    .claude/
+                    └── rules/
+                        ├── testing.md
+                        ├── api-conventions.md
+                        └── deployment.md
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Memory & Mentions -->
+        <div class="slide" data-index="3">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Getting Started</span>
+                <h2>Memory Updates & @ Mentions</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📝 Memory Updates</h4>
+                        <p>Ask Claude to update <code class="code-inline">CLAUDE.md</code> directly without manual editing. Maintains workflow momentum.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>@ Mentions</h4>
+                        <p>Rapid context addition — reference files, directories, or enable MCP servers.</p>
+                    </div>
+                </div>
+
+                <h3>@ Mention Examples</h3>
+                <div class="code-block">
+@src/utils/auth.ts    → Reference specific file
+@components/          → Reference directory
+@mcp:postgres         → Enable MCP server
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Pro tip:</strong> File suggestions are 3x faster in git repositories!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: ! Prefix & Double Esc -->
+        <div class="slide" data-index="4">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Essential Shortcuts</span>
+                <h2>The <code class="code-inline">!</code> Prefix & Double Esc</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>! — Instant Bash</h4>
+                        <p>Execute bash commands instantly <strong>without token consumption</strong></p>
+                        <div class="code-block" style="margin-top: 0.75rem;">
+! git status
+! npm test
+! ls -la
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Esc Esc — Rewind</h4>
+                        <p>Checkpoint conversations and revert changes or code modifications</p>
+                        <div class="highlight-box" style="margin-top: 0.75rem; padding: 0.75rem;">
+                            <p style="font-size: 0.9rem; margin: 0;">⚠️ Bash commands cannot be undone</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">These two shortcuts alone can dramatically speed up your workflow by letting you quickly run commands and undo mistakes.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Search & Stash -->
+        <div class="slide" data-index="5">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Essential Shortcuts</span>
+                <h2>Search, Stash & Suggestions</h2>
+
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Ctrl</span> + <span class="kbd">R</span></div>
+                        <div class="desc">Reverse search past prompts</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Ctrl</span> + <span class="kbd">S</span></div>
+                        <div class="desc">Stash/save prompt draft</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Tab</span></div>
+                        <div class="desc">Edit suggested prompt</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Enter</span></div>
+                        <div class="desc">Execute suggestion</div>
+                    </div>
+                </div>
+
+                <h3>Prompt Stashing</h3>
+                <p>Drafts auto-save and restore — never lose mid-conversation thoughts!</p>
+
+                <h3>Prompt Suggestions</h3>
+                <p>Claude predicts follow-up questions. Press <span class="kbd">Tab</span> to edit or <span class="kbd">Enter</span> to execute immediately.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: All Shortcuts Reference -->
+        <div class="slide" data-index="6">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Essential Shortcuts</span>
+                <h2>Complete Keyboard Reference</h2>
+
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">!</span> + command</div>
+                        <div class="desc">Execute bash instantly</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Esc</span> <span class="kbd">Esc</span></div>
+                        <div class="desc">Rewind / undo</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Ctrl</span> + <span class="kbd">R</span></div>
+                        <div class="desc">Reverse search</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Ctrl</span> + <span class="kbd">S</span></div>
+                        <div class="desc">Stash prompt</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Shift</span> + <span class="kbd">Tab</span> (×2)</div>
+                        <div class="desc">Enter plan mode</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Alt</span> + <span class="kbd">P</span></div>
+                        <div class="desc">Switch model</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Ctrl</span> + <span class="kbd">O</span></div>
+                        <div class="desc">Toggle verbose mode</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">@</span></div>
+                        <div class="desc">Mention files/MCP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Continue & Resume -->
+        <div class="slide" data-index="7">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Session Management</span>
+                <h2>Continue & Resume Sessions</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><code class="code-inline">claude --continue</code></h4>
+                        <p>Resume your last session instantly. Context preserved.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><code class="code-inline">claude --resume</code></h4>
+                        <p>Browse and select from previous sessions.</p>
+                    </div>
+                </div>
+
+                <h3>Named Sessions</h3>
+                <p>Use <code class="code-inline">/rename</code> to name your sessions for easy identification.</p>
+
+                <div class="shortcuts-grid" style="margin-top: 1rem;">
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">P</span></div>
+                        <div class="desc">Preview session</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">R</span></div>
+                        <div class="desc">Rename session</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Sessions persist for up to 30 days by default</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Remote & Export -->
+        <div class="slide" data-index="8">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Session Management</span>
+                <h2>Remote & Export</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🌐 Claude Code Remote</h4>
+                        <p>The <code class="code-inline">/teleport</code> feature transfers web-based sessions to local terminals for continuation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📤 Export Function</h4>
+                        <p><code class="code-inline">/export</code> outputs entire conversations as markdown — all prompts, responses, and tool calls.</p>
+                    </div>
+                </div>
+
+                <h3>Use Cases</h3>
+                <ul>
+                    <li>Document debugging sessions for team knowledge</li>
+                    <li>Create tutorials from real interactions</li>
+                    <li>Transfer work between machines seamlessly</li>
+                    <li>Archive important problem-solving conversations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Vim Mode -->
+        <div class="slide" data-index="9">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Productivity</span>
+                <h2>Vim Mode</h2>
+                <p>Type <code class="code-inline">/vim</code> to enable vim-style editing for prompts.</p>
+
+                <h3>Supported Commands</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">ciw</span></div>
+                        <div class="desc">Change inner word</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">dd</span></div>
+                        <div class="desc">Delete line</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">yy</span></div>
+                        <div class="desc">Yank (copy) line</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">p</span></div>
+                        <div class="desc">Paste</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">i</span> / <span class="kbd">a</span></div>
+                        <div class="desc">Insert / Append</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys"><span class="kbd">Esc</span></div>
+                        <div class="desc">Normal mode</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Perfect for power users who think in vim. Edit complex prompts with muscle memory.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Status & Context -->
+        <div class="slide" data-index="10">
+            <div class="slide-content">
+                <span class="slide-badge badge-green">Productivity</span>
+                <h2>Status Line & Context</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><code class="code-inline">/statusline</code></h4>
+                        <p>Configure terminal status bars showing git status, model info, token usage, and custom scripts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><code class="code-inline">/context</code></h4>
+                        <p>Reveals token consumption sources — see where your context is going.</p>
+                    </div>
+                </div>
+
+                <h3>Context Breakdown</h3>
+                <ul>
+                    <li>System prompts</li>
+                    <li>MCP server prompts</li>
+                    <li>Memory files (CLAUDE.md)</li>
+                    <li>Skills loaded</li>
+                    <li>Conversation history</li>
+                </ul>
+
+                <h3><code class="code-inline">/stats</code></h3>
+                <p>View your usage patterns, favorite models, and streaks!</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Ultrathink & Plan Mode -->
+        <div class="slide" data-index="11">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Thinking & Planning</span>
+                <h2>Ultrathink & Plan Mode</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🧠 Ultrathink Mode</h4>
+                        <p>Include "ultrathink" in prompts to allocate up to <strong>32k tokens</strong> for internal reasoning before responding.</p>
+                        <div class="code-block" style="margin-top: 0.75rem;">
+ultrathink: How should I architect
+this complex authentication system?
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📋 Plan Mode</h4>
+                        <p>Press <span class="kbd">Shift</span>+<span class="kbd">Tab</span> twice to enable planning without immediate code execution.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Review and approve before implementation!</p>
+                    </div>
+                </div>
+
+                <h3>Extended Thinking (API)</h3>
+                <p>Direct API usage supports thinking blocks showing step-by-step reasoning — great for debugging Claude's thought process.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Sandbox & YOLO -->
+        <div class="slide" data-index="12">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Permissions & Safety</span>
+                <h2>Sandbox & YOLO Mode</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🔒 Sandbox Mode</h4>
+                        <p><code class="code-inline">/sandbox</code> establishes boundaries for permitted operations.</p>
+                        <div class="code-block" style="margin-top: 0.75rem;">
+Allowed: npm test, file reading
+Blocked: npm publish, rm -rf
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚡ YOLO Mode</h4>
+                        <p><code class="code-inline">--dangerously-skip-permissions</code></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Auto-approves ALL actions. <strong>Only use in isolated environments!</strong></p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+                    <p style="color: #FCA5A5;"><strong>⚠️ Warning:</strong> YOLO mode bypasses all safety checks. Use responsibly in containers or VMs only.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Hooks -->
+        <div class="slide" data-index="13">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Permissions & Safety</span>
+                <h2>Lifecycle Hooks</h2>
+                <p>Execute custom scripts at predetermined events.</p>
+
+                <h3>Hook Events</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 140px;"><code class="code-inline">PreToolUse</code></div>
+                        <div class="desc">Before tool execution</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 140px;"><code class="code-inline">PostToolUse</code></div>
+                        <div class="desc">After tool execution</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="keys" style="min-width: 140px;"><code class="code-inline">PermissionRequest</code></div>
+                        <div class="desc">When permission needed</div>
+                    </div>
+                </div>
+
+                <h3>Configuration</h3>
+                <p>Configure via <code class="code-inline">/hooks</code> command or <code class="code-inline">.claude/settings.json</code></p>
+
+                <div class="code-block">
+{
+  "hooks": {
+    "PreToolUse": "node ./validate-action.js",
+    "PostToolUse": "node ./log-action.js"
+  }
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Headless & Commands -->
+        <div class="slide" data-index="14">
+            <div class="slide-content">
+                <span class="slide-badge badge-blue">Automation & CI/CD</span>
+                <h2>Headless Mode & Commands</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🤖 Headless Mode</h4>
+                        <p>The <code class="code-inline">-p</code> flag runs Claude non-interactively.</p>
+                        <div class="code-block" style="margin-top: 0.75rem;">
+claude -p "Fix lint errors"
+claude -p "Generate tests for auth.ts"
+                        </div>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Output goes directly to stdout — perfect for pipelines!</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📜 Custom Commands</h4>
+                        <p>Markdown files become reusable slash commands.</p>
+                        <div class="code-block" style="margin-top: 0.75rem;">
+.claude/commands/explain.md
+→ /explain $ARGUMENTS
+                        </div>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Accept arguments for flexible automation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Chrome Extension -->
+        <div class="slide" data-index="15">
+            <div class="slide-content">
+                <span class="slide-badge badge-purple">Browser Integration</span>
+                <h2>Chrome Extension</h2>
+                <p>Claude directly interacts with Chrome through the extension.</p>
+
+                <div class="code-block" style="margin-bottom: 1.5rem;">
+Install from: claude.ai/chrome
+                </div>
+
+                <h3>Capabilities</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🌐 Navigate Pages</h4>
+                        <p>Browse to URLs, follow links</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🖱️ Click & Interact</h4>
+                        <p>Click buttons, fill forms</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔍 Read Console</h4>
+                        <p>Capture errors and logs</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏗️ Inspect DOM</h4>
+                        <p>Query and analyze elements</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Great for debugging frontend issues, testing flows, and automating web tasks!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Subagents -->
+        <div class="slide" data-index="16">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Advanced Features</span>
+                <h2>Subagents</h2>
+                <p>Specialized agents for parallel task execution.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🧠 200k Context Window</h4>
+                        <p>Each subagent gets its own massive context</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚡ Parallel Execution</h4>
+                        <p>Multiple tasks run simultaneously</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔄 Output Merging</h4>
+                        <p>Results combine back to main agent</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 Specialization</h4>
+                        <p>Focused agents for specific domains</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">Perfect for large refactors, multi-file changes, or when you need to research and implement simultaneously.</p>
+            </div>
+        </div>
+
+        <!-- Slide 17: Skills & Plugins -->
+        <div class="slide" data-index="17">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Advanced Features</span>
+                <h2>Agent Skills & Plugins</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🎓 Agent Skills</h4>
+                        <p>Instruction folders that teach Claude specialized tasks.</p>
+                        <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            <li>Reusable across projects</li>
+                            <li>Packaged expertise</li>
+                            <li>Open standard format</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔌 Plugins</h4>
+                        <p>Bundles that combine everything:</p>
+                        <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            <li>Commands</li>
+                            <li>Agents</li>
+                            <li>Skills</li>
+                            <li>Hooks</li>
+                            <li>MCP servers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="code-block">
+/plugin install my-setup
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: LSP & SDK -->
+        <div class="slide" data-index="18">
+            <div class="slide-content">
+                <span class="slide-badge badge-pink">Advanced Features</span>
+                <h2>LSP & Agent SDK</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📐 Language Server Protocol</h4>
+                        <p>IDE-level code intelligence:</p>
+                        <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            <li>Instant diagnostics</li>
+                            <li>Code navigation</li>
+                            <li>Type information</li>
+                            <li>Go to definition</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🛠️ Claude Agent SDK</h4>
+                        <p>Build your own Claude-powered agents!</p>
+                        <div class="highlight-box" style="margin-top: 0.5rem; padding: 0.75rem;">
+                            <p style="font-size: 0.9rem; margin: 0;">~10 lines of code provides the full agent loop, tools, and context management.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">The same SDK powering Claude Code is available for building custom agents.</p>
+            </div>
+        </div>
+
+        <!-- Slide 19: Quick Reference -->
+        <div class="slide" data-index="19">
+            <div class="slide-content">
+                <span class="slide-badge badge-orange">Reference</span>
+                <h2>Quick Reference Card</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Shortcuts</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">!</code> Bash<br>
+                            <code class="code-inline">Esc×2</code> Rewind<br>
+                            <code class="code-inline">Ctrl+R</code> Search<br>
+                            <code class="code-inline">Ctrl+S</code> Stash<br>
+                            <code class="code-inline">Alt+P</code> Model
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Commands</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">/init</code><br>
+                            <code class="code-inline">/context</code><br>
+                            <code class="code-inline">/stats</code><br>
+                            <code class="code-inline">/vim</code><br>
+                            <code class="code-inline">/export</code>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">CLI Flags</h3>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+                            <code class="code-inline">-p</code> Headless<br>
+                            <code class="code-inline">--continue</code><br>
+                            <code class="code-inline">--resume</code><br>
+                            <code class="code-inline">--teleport</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">More Commands</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">
+                            /config, /hooks, /sandbox, /resume, /rename, /theme, /terminal-setup, /statusline
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Danger Zone</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">
+                            --dangerously-skip-permissions (YOLO mode)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Conclusion -->
+        <div class="slide" data-index="20">
+            <div class="slide-content" style="text-align: center;">
+                <span class="slide-badge badge-orange">Wrap Up</span>
+                <h2>Now Go Build Something</h2>
+
+                <p style="max-width: 600px; margin: 2rem auto;">Claude Code is a lever. These features help you find the right grip. The goal is <strong>human control</strong> — amplify your capabilities while staying in command.</p>
+
+                <div class="feature-grid" style="max-width: 600px; margin: 2rem auto;">
+                    <div class="feature-card">
+                        <h4>🎯 Start Small</h4>
+                        <p>Master /init, !, and Esc×2 first</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📈 Level Up</h4>
+                        <p>Add sessions, hooks, and subagents</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="max-width: 600px; margin: 2rem auto;">
+                    <p style="font-size: 1rem;">Want hands-on training? We run workshops on Claude Code and agent development.<br><a href="/#contact" style="color: var(--primary-light);">Get in touch →</a></p>
+                </div>
+
+                <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.9rem;">Based on <a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" style="color: var(--text-muted);">Ado Kukic's excellent guide</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">21</span></span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 4.76%;"></div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">←</span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">→</span> Navigate</span>
+        <span><span class="kbd" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">M</span> Menu</span>
+    </div>
+
+    <script src="slides-shared.js"></script>
+</body>
+</html>
